@@ -1,0 +1,24 @@
+.main {
+    background-color:#f1debe;
+    height: 100vh;
+}
+
+.main .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    height: 20rem;
+
+    position: relative;
+    top: 25%;
+}
+
+.main img {
+    width: 10rem;
+}
+
+.main h1 {
+    font-size: 3rem;
+}
