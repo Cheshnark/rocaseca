@@ -1,13 +1,22 @@
 import './LoginButton.css';
-import {Link} from 'react-router-dom';
+
+const [visibleLogin, setVisibleLogin] = useState(false);
+
+const clickLogin = () => {
+    setVisibleLogin(!visibleLogin)
+    console.log(visibleLogin);
+};
+
+const showLogin = () => {
+    return visibleLogin;
+}
 
 const LoginButton = () => {
     return(
-
-            <button className='login-button'>Login</button>
-
-        
+            <button className='login-button' onClick={clickLogin}>Login</button>
     )
 }
+
+
 
 export default LoginButton;

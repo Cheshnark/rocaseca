@@ -1,0 +1,40 @@
+.search-bar {
+    width: 60%;
+    height: 2rem;
+    display: grid;
+    grid-template-columns: 85% 15%;
+
+    border-style: solid;
+    border-color: #313d49;
+    border-width: 2px;
+    border-radius: 3px;
+
+    margin: 1.5rem
+}
+
+.search-bar input {
+    border-style: none;
+    border-radius: 3px;
+    text-align: right;
+    padding-right: 0.5rem;
+
+    font-size: 1.1rem;
+}
+
+.search-bar input:focus {
+    outline: none;
+}
+
+::placeholder {
+    text-align: right;
+}
+
+.search-bar button {
+    border-style: none none none solid;
+    background-color: #f2b341;
+}
+
+.search-bar button:hover {
+    cursor: pointer;
+    background-color: rgba(242, 179, 65, 0.80);
+}

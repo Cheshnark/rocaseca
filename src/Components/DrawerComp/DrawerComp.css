@@ -1,0 +1,53 @@
+.drawer-comp {
+    height: 100vh;
+    width: 100vw;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    justify-items: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    
+    transform: translateZ(0);
+    transition: transform 2s;
+}
+
+.menu {
+    position: absolute;
+    height: 100vh;
+    width: 50vw;
+    background-color: white;
+}
+
+.menu i {
+    position: absolute;
+    top: 3%;
+    left: 5%;
+}
+
+.drawer-comp__content {
+    position: absolute;
+    top: 25%;
+    padding: 0.5rem;
+    margin: auto 0.5rem;
+    
+}
+
+
+.drawer-comp h2 {
+    text-align: center;
+    font-size: 5rem;
+}
+
+li {
+    list-style: none;
+    margin-top: 1rem;
+    font-size: 2rem;
+    text-align: right;
+
+    color: #f2b341;
+}
+

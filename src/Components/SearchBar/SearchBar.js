@@ -2,9 +2,11 @@ import './SearchBar.css'
 
 const SearchBar = () => {
     return(
-        <form action="post">
-            <input type='text' placeholder='Busca un sectorw' />
-            <button>Soyuz</button>
+        <form className='search-bar' action="post">
+            <input 
+                type='text' 
+                placeholder='Busca un sector o localidad'/>
+            <button><i class="fa-solid fa-magnifying-glass"></i></button>
         </form>
     )
 };
