@@ -7,7 +7,7 @@ import logo from '../../logo2.png';
 const NavBar = () => {
     const [prevScrollPos, setPrevScrollPos] = useState(0);
     const [isMobile, setIsMobile] = useState(null);
-    const [visible, setVisible] = useState(true);
+    const [visible, setVisible] = useState(false);
     const [shown, setShown] = useState(false); 
     const [hidden,setHidden] = useState("visible")
 

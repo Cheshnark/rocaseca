@@ -6,13 +6,11 @@ import Footer from '../../Components/Footer/Footer';
 import SearchBar from '../../Components/SearchBar/SearchBar';
 import LoginButton from '../../Components/LoginButton/LoginButton';
 import RegisterButton from '../../Components/RegisterButton/RegisterButton';
-import { useState } from 'react';
 
 const Main = () => {
 
     return(
         <>
-            <NavBar />
             <main className='main'>
             <section className="front">
                 <div className="front-content">
@@ -20,7 +18,7 @@ const Main = () => {
 
                     <h1>ROCASECA</h1>
                     <SearchBar></SearchBar>
-                    <LoginButton></LoginButton>
+                    <LoginButton />
                 </div>
             </section>
 

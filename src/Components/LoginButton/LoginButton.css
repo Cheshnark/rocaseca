@@ -17,3 +17,11 @@
     transition: 0.15s;
     font-weight: 500;
 }
+
+.login {
+    background: rgba(0, 0, 0, 0.35);
+    position: fixed;
+    height: 1000%;
+    width: 100%;
+    z-index: 0;
+}

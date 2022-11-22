@@ -8,7 +8,7 @@ html {
 	scroll-snap-type: y proximity;
 }
 
-h1,h2,h3,h4,p,a {
+h1,h2,h3,h4,p,a, label {
 	color: #313d49;
 }
 
@@ -27,4 +27,8 @@ a {
 .app {
 	position: absolute;
 	z-index: -1;
+}
+
+input:focus {
+    outline: none;
 }

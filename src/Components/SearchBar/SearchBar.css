@@ -21,10 +21,6 @@
     font-size: 1.1rem;
 }
 
-.search-bar input:focus {
-    outline: none;
-}
-
 ::placeholder {
     text-align: right;
 }
