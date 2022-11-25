@@ -1,4 +1,8 @@
 import './Main.css';
+import { useEffect } from 'react';
+import { useUsersContext } from '../../hooks/useUsersContext';
+
+//Componentes
 import logo from '../../logo2.png';
 import carabiner from '../../carabiner.png';
 import NavBar from '../../Components/NavBar/NavBar';
@@ -8,6 +12,22 @@ import LoginButton from '../../Components/LoginButton/LoginButton';
 import RegisterButton from '../../Components/RegisterButton/RegisterButton';
 
 const Main = () => {
+    // const {users, dispatch} = useUsersContext();
+
+    // useEffect(() => {
+    //   const fetchUsers = async () => {
+    //     // Mientras desarrollo. Uso un proxy en package.json, necesario eliminar esa parte de la ruta
+    //     const response = await fetch('/main/users/');
+    //     const json = await response.json();
+
+    //     if(response.ok){
+    //         dispatch({type:'SET_USERS', payload: json})
+    //     }
+    //   }
+
+    //   fetchUsers()
+    // }, [])
+    
 
     return(
         <>
@@ -44,6 +64,10 @@ const Main = () => {
 
               
                 <button>Guía Rocaseca</button>
+                
+                {/* {users && users.map((user) => 
+                    <p key={user._id}>{user.username}</p>
+                )} */}
                 
                 
             </section>
