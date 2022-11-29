@@ -12,25 +12,26 @@ import LoginButton from '../../Components/LoginButton/LoginButton';
 import RegisterButton from '../../Components/RegisterButton/RegisterButton';
 
 const Main = () => {
-    // const {users, dispatch} = useUsersContext();
+    const {users, dispatch} = useUsersContext();
 
-    // useEffect(() => {
-    //   const fetchUsers = async () => {
-    //     // Mientras desarrollo. Uso un proxy en package.json, necesario eliminar esa parte de la ruta
-    //     const response = await fetch('/main/users/');
-    //     const json = await response.json();
+    useEffect(() => {
+      const fetchUsers = async () => {
+        // Mientras desarrollo. Uso un proxy en package.json, necesario eliminar esa parte de la ruta
+        const response = await fetch('/main/users/');
+        const json = await response.json();
 
-    //     if(response.ok){
-    //         dispatch({type:'SET_USERS', payload: json})
-    //     }
-    //   }
+        if(response.ok){
+            dispatch({type:'SET_USERS', payload: json})
+        }
+      }
 
-    //   fetchUsers()
-    // }, [])
+      fetchUsers()
+    }, [])
     
 
     return(
         <>
+            <NavBar />
             <main className='main'>
             <section className="front">
                 <div className="front-content">

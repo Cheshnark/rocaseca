@@ -10,7 +10,7 @@ const DrawerComp = () => {
                 <div className="drawer-comp__content">
                     <h2 className="title">Menú</h2>
                     <ul>
-                        <Link to='/beers'>
+                        <Link to='/search'>
                             <li>Sectores</li>
                         </Link>
                         <Link to='/random'>

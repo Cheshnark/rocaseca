@@ -12,7 +12,7 @@ const Login = () => {
                     value=''
                     placeholder='Usuario ' />
                 <input 
-                    type='text'
+                    type='password'
                     name='password'
                     value=''
                     placeholder='Contraseña ' />

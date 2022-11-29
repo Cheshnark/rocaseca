@@ -1,6 +1,9 @@
-import './SearchBar.css'
+import './SearchBar.css';
+import { useState } from 'react';
+
 
 const SearchBar = () => {
+
     return(
         <form className='search-bar' action="post">
             <input 

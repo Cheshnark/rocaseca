@@ -7,7 +7,7 @@ import logo from '../../logo2.png';
 const NavBar = () => {
     const [prevScrollPos, setPrevScrollPos] = useState(0);
     const [isMobile, setIsMobile] = useState(null);
-    const [visible, setVisible] = useState(false);
+    const [visible, setVisible] = useState(true);
     const [shown, setShown] = useState(false); 
     const [hidden,setHidden] = useState("visible")
 
@@ -32,7 +32,7 @@ const NavBar = () => {
     const handleClick = () => {
         setShown(!shown);
         
-        if(hidden == "visible"){
+        if(hidden === "visible"){
           document.body.style.overflow = "hidden";
           setHidden("hidden");
         }else{
@@ -57,14 +57,14 @@ const NavBar = () => {
         <nav style={{position:visible && 'top-0', visibility: !visible && 'hidden'}}
           className={`${visible ? 'smooth' : 'invisible'}`} >
             <div className="img-container">
-                <img src={logo} alt="rocaseca-logo" />
+              <Link to='/'><img src={logo} alt="rocaseca-logo" /></Link> 
             </div>
             {isMobile ? (
             <i className="fa-solid fa-bars" onClick={handleClick} style={{visibility: shown && 'hidden'}} />
           ) : (
             <nav>
              <ul class="nav-links">
-              <Link to='/sectores'><li>Sectores</li></Link>
+              <Link to='/search'><li>Sectores</li></Link>
               <Link to='/'><li>Random</li></Link>
               <Link to='/about'><li>About</li></Link>
              </ul>            

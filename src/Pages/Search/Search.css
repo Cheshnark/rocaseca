@@ -1,0 +1,37 @@
+.search {
+    background-color:#f1debe;
+    height: 100vh;
+}
+
+.search-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    position: relative;
+    top: 25%;
+}
+
+.search-container img {
+    width: 50%;
+}
+
+.search-container h2 {
+    width: 80%;
+    text-align: center;
+}
+
+.search-results {
+    position: relative;
+    top: 25%;
+    width: 90%;
+    margin: auto;
+}
+
+.search-results__card {
+    background-color: aliceblue;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border-radius: 3px;
+}
