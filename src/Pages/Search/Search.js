@@ -4,30 +4,11 @@ import skull from '../../skull.png'
 
 import SearchBar from '../../Components/SearchBar/SearchBar';
 import NavBar from '../../Components/NavBar/NavBar';
+import Footer from '../../Components/Footer/Footer';
 
 
-const Search = () => {
+const Search = (props) => {
     const [crags, setCrags] = useState([]);
-    const [bar, setBar] = useState("");
-    const [searchCrag, setSearchCrag] = useState("");
-    const [destilledCrags, setDestilledCrags] = useState([]);
-
-    const filterCrags = (() => {
-        setSearchCrag(bar.toLowerCase());
-
-        const cragsTraps = crags.filter((crag) => {
-            const cragName = (crag.cragname).toLowerCase().split(/\s+/);
-            const localityName = (crag.locality).toLowerCase().split(/\s+/);
-            console.log(searchCrag);
-
-            return cragName.includes(searchCrag) || localityName.includes(searchCrag);
-        })
-
-        setDestilledCrags(cragsTraps);
-        console.log(destilledCrags);
-     
-
-      })
 
     useEffect(() => {
       const fetchCrags = async () => {
@@ -51,23 +32,10 @@ const Search = () => {
             <div className="search-container">
                 <img src={skull} alt="skull-with-sunny-mountain" />
                 <h2>Busca un sector o localidad</h2>
-                <SearchBar />
-                <input type="text" value={bar} onChange={(e) => {setBar(e.target.value)}}/>
-                <button onClick={filterCrags}>Jum</button>
-            </div>
-            <div className="search-results">
-                {destilledCrags.map((crag) => {
-  
-                    return (
-                        <div className='search-results__card'>
-                            <h3>{crag.cragname}</h3>
-                            <p>{crag.locality}</p>
-                        </div>
-                    )
-                })}
-            </div>
-            
+                <SearchBar crags={crags}/>
+            </div>            
         </main>
+        <Footer />
         </>
     )
 }

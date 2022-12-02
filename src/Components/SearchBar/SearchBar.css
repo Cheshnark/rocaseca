@@ -34,3 +34,21 @@
     cursor: pointer;
     background-color: rgba(242, 179, 65, 0.80);
 }
+
+.search-results-container {
+    background-color:#f1debe;
+    width: 100%;
+}
+
+.to-search {
+    background-color: #f2b341;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    margin: 1rem auto;
+
+    border-style: none;
+    border-radius: 3px;
+
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.15);
+
+    font-size: 1.2rem;
+}

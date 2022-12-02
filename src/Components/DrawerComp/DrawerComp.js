@@ -11,7 +11,7 @@ const DrawerComp = () => {
                     <h2 className="title">Menú</h2>
                     <ul>
                         <Link to='/search'>
-                            <li>Sectores</li>
+                            <li>Buscador</li>
                         </Link>
                         <Link to='/random'>
                             <li>Regístrate</li>

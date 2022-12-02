@@ -1,5 +1,5 @@
 import './Main.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useUsersContext } from '../../hooks/useUsersContext';
 
 //Componentes
@@ -13,6 +13,22 @@ import RegisterButton from '../../Components/RegisterButton/RegisterButton';
 
 const Main = () => {
     const {users, dispatch} = useUsersContext();
+    const [crags, setCrags] = useState([]);
+
+    useEffect(() => {
+      const fetchCrags = async () => {
+        // Mientras desarrollo. Uso un proxy en package.json, necesario eliminar esa parte de la ruta
+        const response = await fetch('/main/crags/');
+        const json = await response.json();
+
+        if(response.ok){
+           setCrags(json);
+        }
+      }
+
+      fetchCrags()
+      
+    }, [])
 
     useEffect(() => {
       const fetchUsers = async () => {
@@ -38,7 +54,7 @@ const Main = () => {
                     <img src={logo} alt="rocaseca-logo" />
 
                     <h1>ROCASECA</h1>
-                    <SearchBar></SearchBar>
+                    <SearchBar crags={crags} main={true}/>
                     <LoginButton />
                 </div>
             </section>

@@ -64,7 +64,7 @@ const NavBar = () => {
           ) : (
             <nav>
              <ul class="nav-links">
-              <Link to='/search'><li>Sectores</li></Link>
+              <Link to='/search'><li>Buscador</li></Link>
               <Link to='/'><li>Random</li></Link>
               <Link to='/about'><li>About</li></Link>
              </ul>            
