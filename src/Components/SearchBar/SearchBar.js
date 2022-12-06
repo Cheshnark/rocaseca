@@ -2,11 +2,12 @@ import './SearchBar.css';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import WeatherToday from '../WeatherToday/WeatherToday';
+
 
 const SearchBar = (props) => {
     const crags = props.crags;
     const main = props.main;
-    console.log(main);
     const [bar, setBar] = useState("");
     const [searchCrag, setSearchCrag] = useState("");
     const [destilledCrags, setDestilledCrags] = useState([]);
@@ -15,7 +16,7 @@ const SearchBar = (props) => {
     const filterCrags = ((e) => {
         e.preventDefault();
         setSearchCrag(bar.toLowerCase());
-        console.log(searchCrag);
+        setBar("");
       })
 
     useEffect(() => {
@@ -39,6 +40,7 @@ const SearchBar = (props) => {
         })
 
         setDestilledCrags(cragsTraps);
+
         setShowResults(() => {
             if (destilledCrags > 0 || searchCrag.length === 0) {
                 setShowResults(false);
@@ -46,12 +48,12 @@ const SearchBar = (props) => {
                 setShowResults(true);
             }
         });
-        console.log(destilledCrags);
-    }, [searchCrag])
+
+        // eslint-disable-next-line
+    }, [searchCrag])    
 
     return(
         <>
-        
             {main ? (
                 <Link to={'/search'}>
                     <button className='to-search'><i class="fa-solid fa-magnifying-glass"></i> Busca sectores o localidades</button>
@@ -74,10 +76,13 @@ const SearchBar = (props) => {
             {(destilledCrags.length > 0) ? (
                 destilledCrags.map((crag, index) => { 
                     return (
-                        <div className='search-results__card' key={index}>
-                            <h3>{crag.cragname}</h3>
-                            <p>{crag.locality}</p>
-                        </div> 
+                        <Link to={`/sector/~${crag._id}`}>
+                            <div className='search-results__card' key={index}>
+                                <h3>{crag.cragname}</h3>
+                                <p>{crag.locality}</p>
+                                <WeatherToday crag={crag}/>
+                            </div>
+                        </Link> 
                     )
                 })
             ):(

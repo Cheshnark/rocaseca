@@ -1,4 +1,5 @@
 import './Crag.css';
+import { useParams } from 'react-router-dom';
 
 import NavBar from '../../Components/NavBar/NavBar';
 import WeatherToday from '../../Components/WeatherToday/WeatherToday'; 
@@ -6,6 +7,9 @@ import WeatherFiveDays from '../../Components/WeatherFiveDays/WeatherFiveDays';
 import WeatherHourly from '../../Components/WeatherHourly/WeatherHourly';
 
 const Crag = () => {
+    const { id } = useParams();
+    console.log(id);
+
     return (
         <>
             <NavBar />
@@ -13,9 +17,10 @@ const Crag = () => {
             <main className="crag">
                 <section className="weather-container">
                     <h2>Nombre del sector</h2>
-                    <WeatherToday />
+                    <h3>Tiempo Hoy</h3>
+                    {/* <WeatherToday />
                     <WeatherFiveDays />
-                    <WeatherHourly />
+                    <WeatherHourly /> */}
         
                 </section>
                 <section className="info-container">
