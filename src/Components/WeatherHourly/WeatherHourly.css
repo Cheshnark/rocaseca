@@ -1,0 +1,14 @@
+.hourly-container {
+    width: 90%;
+    border-radius: 3px;
+    margin: 1rem auto;
+    padding: 1rem;
+
+    background-color: #f2b341;
+    text-align: center;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}

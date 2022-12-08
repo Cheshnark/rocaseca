@@ -76,7 +76,7 @@ const SearchBar = (props) => {
             {(destilledCrags.length > 0) ? (
                 destilledCrags.map((crag, index) => { 
                     return (
-                        <Link to={`/sector/~${crag._id}`}>
+                        <Link to={`/sector/${crag._id}`} state={{crag:crag}}>
                             <div className='search-results__card' key={index}>
                                 <h3>{crag.cragname}</h3>
                                 <p>{crag.locality}</p>

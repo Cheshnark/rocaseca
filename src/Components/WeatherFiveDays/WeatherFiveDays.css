@@ -1,0 +1,42 @@
+.five-days {
+    width: 93%;
+    margin: 0 auto;
+
+}
+
+.five-days-container {
+    margin: 1rem 0;
+    padding: 1rem;
+
+    background-color: #f2b341;
+    text-align: center;
+
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    column-gap: 0.2rem;
+
+
+}
+
+.five-days-day {
+    margin: 0 auto;
+    max-width: 5rem;
+}
+
+.five-days-day h4 {
+    margin-bottom: 0.5rem;
+}
+
+.five-days-day img {
+    width: 4rem;
+}
+
+.five-days-description {
+    margin: 1rem 0;
+    padding: 1rem;
+
+    background-color: #f2b341;
+    text-align: justify;
+    font-size: 1.05rem;
+    font-weight: 600;
+}
