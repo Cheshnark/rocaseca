@@ -4,7 +4,7 @@ import skull from '../../skull.png'
 
 import SearchBar from '../../Components/SearchBar/SearchBar';
 import NavBar from '../../Components/NavBar/NavBar';
-import Footer from '../../Components/Footer/Footer';
+// import Footer from '../../Components/Footer/Footer';
 
 
 const Search = (props) => {
@@ -35,7 +35,7 @@ const Search = (props) => {
                 <SearchBar crags={crags}/>
             </div>            
         </main>
-        <Footer />
+        {/* <Footer /> */}
         </>
     )
 }

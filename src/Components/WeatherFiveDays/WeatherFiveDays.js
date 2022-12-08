@@ -29,7 +29,7 @@ const WeatherFiveDays = () => {
 
  
     useEffect(() => {
-        if ((currentDate - lastDate) > oneHour){
+        if ((currentDate - lastDate) > oneHour || !lastDate){
             console.log('Dispara! Dispara!');
             fetchCrags()
             .then(res => {

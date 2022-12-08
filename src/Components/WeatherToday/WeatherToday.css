@@ -13,7 +13,7 @@
     text-align: center;
 
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 
 }
@@ -23,7 +23,7 @@
     grid-template-rows: repeat(3, 1fr);
     row-gap: 0.1rem;
     
-    width: 100%;
+    width: 50%;
 }
 
 .today-grid p {

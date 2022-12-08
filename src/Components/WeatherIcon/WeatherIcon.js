@@ -98,7 +98,7 @@ const WeatherIcon = (props) => {
     }
     
     return (
-        <img src={icon} alt="weather-icon" />
+        <img className='weather-icon' src={icon} alt="weather-icon" />
     )
 }
 

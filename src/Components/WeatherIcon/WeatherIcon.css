@@ -1,3 +1,7 @@
-.today-img-container img {
-    width: 50%;
+.weather-icon{
+    max-width: 5rem;
+}
+
+.search-container .weather-icon{
+    width: 4rem;
 }
