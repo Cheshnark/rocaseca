@@ -5,6 +5,17 @@
     padding-top: 10rem;
 }
 
+.crag hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 3.5px solid;
+    border-radius: 3px;
+    margin-bottom: 1rem;
+    padding: 0;
+    width: 50%;
+}
+
 .weather-container {
     display: flex;
     flex-direction: column;
@@ -19,12 +30,8 @@
     justify-content: space-around;
 
     margin-top: 3rem;
-    width: 90%;
-    border-radius: 3px;
-    margin: 3rem auto;
-    padding: 1rem 0;
-
-    background-color: #f2b341;
+    margin: 2rem auto;
+    padding: 1rem;
 }
 
 .weather-container h2 {
@@ -33,13 +40,6 @@
     text-align: center;
 }
 
-.crag hr {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 3.5px solid;
-    border-radius: 3px;
-    margin-bottom: 1rem;
-    padding: 0;
-    width: 50%;
+.info-container {
+    text-align: center;
 }

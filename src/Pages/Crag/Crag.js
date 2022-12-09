@@ -6,6 +6,7 @@ import NavBar from '../../Components/NavBar/NavBar';
 import WeatherToday from '../../Components/WeatherToday/WeatherToday'; 
 import WeatherFiveDays from '../../Components/WeatherFiveDays/WeatherFiveDays';
 import WeatherHourly from '../../Components/WeatherHourly/WeatherHourly';
+import CragInfo from '../../Components/CragInfo/CragInfo';
 
 const Crag = (props) => {
     const { id } = useParams();
@@ -30,6 +31,7 @@ const Crag = (props) => {
                 </section>
                 <section className="info-container">
                     <h3>Información del sector</h3>
+                    <CragInfo />
                 </section>
             </main>
         </>

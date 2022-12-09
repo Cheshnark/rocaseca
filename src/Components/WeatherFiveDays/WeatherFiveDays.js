@@ -58,7 +58,9 @@ const WeatherFiveDays = () => {
                 {fiveDaysWeather.FiveDays.map((day, index) =>{
                     return(
                     <div className="five-days-day" key={index}>
-                    <h4>{today + index}/{month + 1}</h4>
+                    <h4>
+                    {(today + index > 30)?(today + (index - 30)):(today + index)}
+                    /{(month + 1 > 12)?(month - 10):(month + 1)}</h4>
                     <div className="five-days-img-container">
                         <WeatherIcon weatherIcon={day.Temperature.Day.Icon}/>
                     </div>

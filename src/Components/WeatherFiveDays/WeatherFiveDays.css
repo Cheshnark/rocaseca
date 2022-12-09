@@ -1,12 +1,14 @@
 .five-days {
     width: 93%;
     margin: 0 auto;
+    
 
 }
 
 .five-days-container {
     margin: 1rem 0;
     padding: 1rem;
+    border-radius: 3px;
 
     background-color: #f2b341;
     text-align: center;
@@ -21,6 +23,8 @@
 .five-days-day {
     margin: 0 auto;
     max-width: 5rem;
+
+    font-weight: 600;
 }
 
 .five-days-day h4 {
@@ -34,6 +38,7 @@
 .five-days-description {
     margin: 1rem 0;
     padding: 1rem;
+    border-radius: 3px;
 
     background-color: #f2b341;
     text-align: justify;

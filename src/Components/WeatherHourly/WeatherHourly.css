@@ -4,7 +4,7 @@
 }
 
 .twelve-hours-container {
-    width: 90%;
+    
     border-radius: 3px;
     margin: 1rem auto;
     padding: 1rem;
@@ -16,23 +16,43 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+}
 
+.twelve-hours-accordion-controls {
+    width: 95%;
+}
+
+.twelve-hours-accordion-controls i:hover{
+    cursor: pointer;
+}
+
+.accordion-text {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    align-items: end;
+
+    text-align: center;
+    padding: 1rem;
+}
+
+.twelve-hours-accordion-controls hr {
+    margin: 1rem auto;
 }
 
 .twelve-hours-hour{
     margin: 0 auto;
+    text-align: center;
     
     display: grid;
     grid-template-columns: 1fr 1fr 3fr;
-    column-gap: 0.1rem;
+    column-gap: 0.5rem;
     align-items: center;
-    justify-content: center;
 }
 
 .hour-weather-info {
     display: grid;
     grid-template-rows: repeat(3 1fr);
-    width: 85%;
+    width: 75%;
     margin: 0 auto;
 }
 

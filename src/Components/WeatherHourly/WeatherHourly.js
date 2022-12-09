@@ -1,5 +1,5 @@
 import './WeatherHourly.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import WeatherIcon from '../WeatherIcon/WeatherIcon';
@@ -14,6 +14,8 @@ const WeatherHourly = () => {
     const currentDate = (new Date()).getTime();
     const oneHour = 60 * 60 * 1000; 
     const hourNow = (new Date()).getHours();
+
+    const [clicked, setClicked] = useState(false)
 
 
     const fetchCrags = async () => {
@@ -51,23 +53,46 @@ const WeatherHourly = () => {
          // eslint-disable-next-line
     }, [hourlyWeather])
 
+    const click = () => {
+        setClicked(!clicked);
+    }
+
     return (
         <div className="twelve-hours">
             <div className="twelve-hours-container">
-                {hourlyWeather.map((hour, index) =>{
+                {!clicked? (
+                    <div className="twelve-hours-accordion-controls">
+                        <div className="accordion-text">
+                            <h4>Pulsa para desplegar</h4>
+                            <i class="fa-solid fa-angle-down" onClick={click}></i>
+                        </div>
+                    </div>
+                ):(
+                    <>
+                    <div className="twelve-hours-accordion-controls">
+                        <div className="accordion-text">
+                            <h4>Pulsa para ocultar</h4>
+                            <i class="fa-solid fa-angle-up" onClick={click}></i>
+                        </div>
+                        <hr />
+                    </div>
+                    {hourlyWeather.map((hour, index) =>{
                     return(
                     <div className="twelve-hours-hour" key={index}>
-                    <h4>{hourNow + index}</h4>
-                    <div className="hour-img-container">
-                        <WeatherIcon weatherIcon={hour.WeatherIcon}/>
-                    </div>
-                    <div className="hour-weather-info">
-                        <p>{hour.Temperature.Value}Cº</p>
-                        <p>Real Feel: {hour.RealFeelTemperature.Value}Cº</p>
-                        <p><i class="fa-solid fa-droplet"></i> {hour.RainProbability}%</p>
-                    </div>
-                </div>)}
+                        <h4>{(hourNow + index > 23)?(hourNow + (index - 24)):(hourNow + index)}:00</h4>
+                        <div className="hour-img-container">
+                            <WeatherIcon weatherIcon={hour.WeatherIcon}/>
+                        </div>
+                        <div className="hour-weather-info">
+                            <p>{hour.Temperature.Value}Cº</p>
+                            <p>Real Feel: {hour.RealFeelTemperature.Value}Cº</p>
+                            <p><i class="fa-solid fa-droplet"></i> {hour.RainProbability}%</p>
+                        </div>
+                    </div>)}
+                    )}
+                    </>
                 )}
+                
             </div>
         </div>
     )
