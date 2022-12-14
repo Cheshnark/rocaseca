@@ -59,11 +59,18 @@ const WeatherToday = (props) => {
             <div className="today-container">
             <div className="today-img-container">
                 <WeatherIcon weatherIcon={cragCurrentWeather.WeatherIcon}/>
-            </div>
-            <div className="today-grid">
-                <p>{cragCurrentWeather.WeatherText}</p>
-                <p>{cragCurrentWeather.HasPrecipitation}</p>
                 <p>{cragCurrentWeather.Temperature.Metric.Value + cragCurrentWeather.Temperature.Metric.Unit}</p>
+            </div>
+            <div className="today-flex">
+                <p><span>{cragCurrentWeather.WeatherText}</span></p>
+                {cragCurrentWeather.HasPrecipitation && 
+                    <p><i class="fa-solid fa-droplet"></i> {cragCurrentWeather.PrecipitationSummary.Metric.Value + cragCurrentWeather.PrecipitationSummary.Metric.Unit}</p>
+                }
+                <div className="today-lowergrid">
+                    <p><span>Feel:</span> {cragCurrentWeather.RealFeelTemperature.Metric.Value + cragCurrentWeather.RealFeelTemperature.Metric.Unit}</p>
+                    <p><span>UV:</span> {cragCurrentWeather.UVIndexText}</p>
+                    <p><i class="fa-solid fa-cloud"></i> {cragCurrentWeather.CloudCover}%</p>
+                </div>
             </div>
             </div>
         </div>

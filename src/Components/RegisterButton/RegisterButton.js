@@ -36,7 +36,7 @@ const RegisterButton = () => {
 
         const user = {username, email, password};
 
-        const response = await fetch('/main/register', {
+        const response = await fetch('/user/register', {
             method: 'POST',
             body: JSON.stringify(user),
             headers: {
@@ -49,16 +49,18 @@ const RegisterButton = () => {
             setError(json.error);
             console.log(error);
         }
-        if(response.ok && email === confirmEmail && password === confirmPassword){
-            setError(null);
-            console.log('New user added correctly', json.username);
-            setUsername('');
-            setEmail('');
-            setPassword('');
-            setConfirmEmail('');
-            setConfirmPassword('');
-            clickRegister();
-            dispatch({type:'CREATE_USER', payload: json})
+        if(response.ok){
+            // setError(null);
+            // console.alert('New user added correctly', json.username);
+            // setUsername('');
+            // setEmail('');
+            // setPassword('');
+            // setConfirmEmail('');
+            // setConfirmPassword('');
+            // clickRegister();
+            // setShowRegister(false);
+            localStorage.setItem('user', JSON.stringify(json));
+            dispatch({type:'LOGIN', payload: json})
         }
     }
 

@@ -3,12 +3,13 @@ import { useParams } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
 import NavBar from '../../Components/NavBar/NavBar';
+import Footer from '../../Components/Footer/Footer';
 import WeatherToday from '../../Components/WeatherToday/WeatherToday'; 
 import WeatherFiveDays from '../../Components/WeatherFiveDays/WeatherFiveDays';
 import WeatherHourly from '../../Components/WeatherHourly/WeatherHourly';
 import CragInfo from '../../Components/CragInfo/CragInfo';
 
-const Crag = (props) => {
+const Crag = () => {
     const { id } = useParams();
     const location = useLocation();
     const crag = location.state?.crag;
@@ -34,6 +35,8 @@ const Crag = (props) => {
                     <CragInfo />
                 </section>
             </main>
+
+            <Footer/>
         </>
     )
 };

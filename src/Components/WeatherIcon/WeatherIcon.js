@@ -36,13 +36,19 @@ const WeatherIcon = (props) => {
         case 3:
             icon = partlySunny;
             break;    
-        case 4 || 5:
+        case 4:
+            icon = intermitentClouds;
+            break;
+         case 5:
             icon = intermitentClouds;
             break;
         case 6:
             icon = mostlyCloudy;
             break;
-        case 7 || 8:
+        case 7:
+            icon = cloudy;
+            break;
+        case 8:
             icon = cloudy;
             break;
         case 11:
@@ -51,25 +57,55 @@ const WeatherIcon = (props) => {
         case 12:
             icon = showers;
             break;
-        case 13 || 14:
+        case 13:
+            icon = cloudyShowers;
+            break;
+        case 14:
             icon = cloudyShowers;
             break;
         case 15:
             icon = storm;
             break;
-        case 16 || 17:
+        case 16:
+            icon = cloudyStorm;
+            break;
+        case 17:
             icon = cloudyStorm;
             break;
         case 18:
             icon = rain;
             break;
-        case 19 || 20 ||21 || 22 || 23 || 43 || 44:
+        case 19:
+            icon = snow;
+            break;
+        case 20:
+            icon = snow;
+            break;
+        case 21:
+            icon = snow;
+            break;
+        case 22:
+            icon = snow;
+            break;
+        case 23:
+            icon = snow;
+            break;
+        case 43:
+            icon = snow;
+            break;
+        case 44:
             icon = snow;
             break;
         case 24:
             icon = ice;
             break;
-        case 25 || 26 || 29:
+        case 25:
+            icon = hardRain;
+            break;
+        case 26 :
+            icon = hardRain;
+            break;
+        case 29:
             icon = hardRain;
             break;
         case 30:
@@ -84,18 +120,32 @@ const WeatherIcon = (props) => {
         case 33:
             icon = clearNight;
             break;
-        case 34 || 35 || 36 || 38:
+        case 34:
+            icon = cloudyNight;
+            break;
+        case 35:
+            icon = cloudyNight;
+            break;
+        case 36:
+            icon = cloudyNight;
+            break;
+        case 38:
             icon = cloudyNight;
             break;
         case 37:
             icon = hazyNight;
             break;
-        case 39 || 40:
+        case 39:
+            icon = cloudyShowersNight;
+            break;
+        case 40:
             icon = cloudyShowersNight;
             break;
         default:
             break;
     }
+
+    console.log(iconNumber);
     
     return (
         <img className='weather-icon' src={icon} alt="weather-icon" />

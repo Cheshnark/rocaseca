@@ -64,8 +64,8 @@ const WeatherFiveDays = () => {
                     <div className="five-days-img-container">
                         <WeatherIcon weatherIcon={day.Temperature.Day.Icon}/>
                     </div>
-                    <p>Min-{day.Temperature.Minimum.Value}Cº</p>
-                    <p>Max-{day.Temperature.Maximum.Value}Cº</p>
+                    <p>Min {day.Temperature.Minimum.Value}Cº</p>
+                    <p>Max {day.Temperature.Maximum.Value}Cº</p>
                 </div>)}
                 )}
             </div>

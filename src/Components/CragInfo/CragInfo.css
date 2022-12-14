@@ -1,4 +1,22 @@
 .crag-info {
     margin-top: 1rem;
     width: 93%;
+
+}
+
+.crag-info__container h4{
+    margin-bottom: 0.5rem;
+}
+
+.crag-info__container p{
+    text-align: justify;
+    margin-bottom: 1rem;
+}
+
+.crag-info__container a {
+    color: #d36067;
+}
+
+.crag-info__container a:hover {
+    color: #f58c4a;
 }

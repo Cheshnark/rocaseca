@@ -20,7 +20,7 @@ const WeatherHourly = () => {
 
     const fetchCrags = async () => {
       // Mientras desarrollo. Uso un proxy en package.json, necesario eliminar esa parte de la ruta
-      const response = await fetch(`http://localhost:8000/main/crags/five-days/` + cragId);
+      const response = await fetch(`http://localhost:8000/main/crags/hourly-weather/` + cragId);
       const json = response.json();
 
       if(response.ok){
@@ -30,7 +30,7 @@ const WeatherHourly = () => {
 
  
     useEffect(() => {
-        if ((currentDate - lastDate) > oneHour){
+        if ((currentDate - lastDate) > oneHour || !lastDate){
             console.log('Dispara! Dispara!');
             fetchCrags()
             .then(res => {
@@ -51,7 +51,7 @@ const WeatherHourly = () => {
          };
         
          // eslint-disable-next-line
-    }, [hourlyWeather])
+    }, [])
 
     const click = () => {
         setClicked(!clicked);
