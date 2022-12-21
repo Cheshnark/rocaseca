@@ -1,0 +1,22 @@
+.not-found {
+    background-color:#f1debe;
+    height: 90vh;
+    padding-top: 8rem;
+}
+
+.not-found h2 {
+    text-align: center;
+    padding: 1rem;
+}
+
+.not-found-content {
+    background-color: #f2b341;
+    border-radius: 3px;
+    width: 93%;
+    margin: 2rem auto;
+    padding: 1rem 1rem 2rem 1rem;
+}
+
+.not-found-content p {
+    text-align: justify;
+}

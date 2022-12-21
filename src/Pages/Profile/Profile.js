@@ -39,7 +39,7 @@ const Profile = () => {
         <>
             <NavBar />
             <main className="profile">
-                <h2>Profile</h2>
+                <h2>Perfil de usuario</h2>
                 {userInfo && (
                 <div className="profile-content">
                     <div className="profile-content__user">
@@ -52,7 +52,9 @@ const Profile = () => {
                     </div>
                     <div className="profile-content__password">
                         <h3>Contraseña</h3>
-                        <p>¿Cambiar contraseña?</p>
+                        <Link to={'/forgot-password'}>
+                            <p>¿Cambiar contraseña?</p>
+                        </Link>
                     </div>
                     <div className="profile-content__favs">
                         <h3>Sectores favoritos</h3>

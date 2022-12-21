@@ -13,10 +13,6 @@ const Login = () => {
         e.preventDefault();
         await login(email, password);
     }
-
-    const handleForgot = () => {
-
-    }
     
     return(
         <div className="login-content">
@@ -37,7 +33,7 @@ const Login = () => {
                 <button type='submit' disabled={isLoading}>Login</button>
                 {error && <div className="login-error">{error}</div> }
             </form>
-            <p>¿Has olvidado tu contraseña? <Link to={'/forgot-password'}><span onClick={handleForgot}>Pincha aquí para recuperarla</span></Link>.
+            <p>¿Has olvidado tu contraseña? <Link to={'/forgot-password'}><span>Pincha aquí para recuperarla</span></Link>.
             <br /><br />
             O <Link to={'/register'}><span>REGÍSTRATE</span></Link> si no tienes una cuenta.</p>
         </div>

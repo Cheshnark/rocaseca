@@ -77,13 +77,16 @@ const NavBar = () => {
                <Link to='/search'><li>Buscador</li></Link>
                {!user && (
                 <div className="nav-unlogged">
-                  <Link to='/'><li>Registrate</li></Link>
-                  <Link to='/about'><li>Login</li></Link>
+                  <Link to='/register'><li>Registrate</li></Link>
+                  <Link to='/login'><li>Login</li></Link>
                 </div>
                )}
               </ul>
               {user && (
               <div className="nav-logged">
+                <Link to={'/profile'}>
+                  <li>Perfil</li>
+                </Link>
                 <span>{user.email}</span>
                 <button onClick={logoutClick}>Log out</button>  
               </div> 

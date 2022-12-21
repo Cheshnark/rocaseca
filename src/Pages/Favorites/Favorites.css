@@ -1,6 +1,7 @@
 .favorites {
     background-color:#f1debe;
     height: 100%;
+    min-height: 90vh;
     padding: 8rem 0 1rem 0;
 }
 
