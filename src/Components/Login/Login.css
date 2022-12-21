@@ -74,3 +74,21 @@
 
     color: #313d49;
 }
+
+.login-error {
+    padding: 0.6rem;
+    background-color: #d36067;
+    border: 3px solid #e7195a;
+    color: #313d49;
+    border-radius: 3px;
+    margin: 1.1rem 0;
+}
+
+.login-content span {
+    color: #d36067;
+    font-weight: 600;
+}
+
+.login-content span:hover {
+    cursor: pointer;
+}

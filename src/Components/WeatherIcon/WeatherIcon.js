@@ -144,8 +144,6 @@ const WeatherIcon = (props) => {
         default:
             break;
     }
-
-    console.log(iconNumber);
     
     return (
         <img className='weather-icon' src={icon} alt="weather-icon" />

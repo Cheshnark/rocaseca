@@ -12,8 +12,8 @@ import LoginButton from '../../Components/LoginButton/LoginButton';
 import RegisterButton from '../../Components/RegisterButton/RegisterButton';
 
 const Main = () => {
-    const {users, dispatch} = useUsersContext();
     const [crags, setCrags] = useState([]);
+    const { user } = useUsersContext();
 
     useEffect(() => {
       const fetchCrags = async () => {
@@ -30,21 +30,6 @@ const Main = () => {
       
     }, [])
 
-    useEffect(() => {
-      const fetchUsers = async () => {
-        // Mientras desarrollo. Uso un proxy en package.json, necesario eliminar esa parte de la ruta
-        const response = await fetch('/main/users/');
-        const json = await response.json();
-
-        if(response.ok){
-            dispatch({type:'SET_USERS', payload: json})
-        }
-      }
-
-      fetchUsers()
-    }, [])
-    
-
     return(
         <>
             <NavBar />
@@ -55,7 +40,7 @@ const Main = () => {
 
                     <h1>ROCASECA</h1>
                     <SearchBar crags={crags} main={true}/>
-                    <LoginButton />
+                    {!user && <LoginButton />}
                 </div>
             </section>
 
@@ -82,22 +67,26 @@ const Main = () => {
               
                 <button>Guía Rocaseca</button>
                 
-                {/* {users && users.map((user) => 
-                    <p key={user._id}>{user.username}</p>
-                )} */}
-                
-                
             </section>
-
+            
             <section className="register-login">
                 <div className="register-login-content">
 
                     <img src={carabiner} alt="rocaseca-logo" />
 
-                    <h2>ENTRA O REGÍSTRATE PARA GUARDAR TUS SECTORES</h2>
-                    <LoginButton />
-                    <br />
-                    <RegisterButton />
+                    {!user ? (
+                    <>
+                        <h2>ENTRA O REGÍSTRATE PARA GUARDAR TUS SECTORES</h2>
+                        <LoginButton />
+                        <br />
+                        <RegisterButton />
+                    </>
+                    ):(
+                        <>
+                            <h2>¿ECHAS EN FALTA ALGÚN SECTOR? ESCRÍBENOS</h2>
+                            <p>rocaseca.app@gmail.com</p>
+                        </>
+                    )}
                 </div>
             </section>
             <Footer />

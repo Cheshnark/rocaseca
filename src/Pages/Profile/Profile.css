@@ -1,0 +1,44 @@
+.profile {
+    background-color:#f1debe;
+    height: 90.5vh;
+    padding-top: 8rem;
+}
+
+.profile h2 {
+    text-align: center;
+    padding: 1rem;
+}
+
+.profile-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-content h3 {
+    text-align: center;
+}
+
+.profile-content__user,.profile-content__email,.profile-content__favs,.profile-content__password {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1rem;
+    align-items: center;
+
+    margin-top: 1rem;
+    background-color: #f2b341;
+    border-radius: 3px;
+    padding: 1rem;
+    width: 85%;
+}
+
+.profile-content__favs p {
+    text-align: center;
+    color: #d36067;
+    font-weight: 800;
+    font-size: 2rem;
+}
+
+.profile-content__favs p:hover {
+    cursor: pointer;
+}

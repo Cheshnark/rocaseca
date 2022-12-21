@@ -38,7 +38,7 @@
 
     border-radius: 5px;
 
-    z-index: 1;
+    z-index: 0;
     }
 
 .register-content {
@@ -110,6 +110,7 @@
     position: absolute;
     top: 4%;
     right: 6%;
+    z-index: 1;
 
     color: #313d49;
 }
@@ -121,4 +122,13 @@
     color: #313d49;
     border-radius: 3px;
     margin: 1.1rem 0;
+}
+
+.register-content span {
+    color: #d36067;
+    font-weight: 600;
+}
+
+.register-content span:hover {
+    cursor: pointer;
 }

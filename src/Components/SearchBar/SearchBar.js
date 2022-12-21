@@ -1,6 +1,7 @@
 import './SearchBar.css';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useUsersContext } from '../../hooks/useUsersContext';
 
 import WeatherToday from '../WeatherToday/WeatherToday';
 
@@ -12,6 +13,33 @@ const SearchBar = (props) => {
     const [searchCrag, setSearchCrag] = useState("");
     const [destilledCrags, setDestilledCrags] = useState([]);
     const [showResults, setShowResults] = useState(false);
+    const { user } = useUsersContext();
+    const [favCragsList, setFavCragsList] = useState([]);
+
+    useEffect(() => {
+        const fetchCragsList = async () => {
+          // Mientras desarrollo. Uso un proxy en package.json, necesario eliminar esa parte de la ruta
+          const response = await fetch('logged/favorite-crags-list', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${user.token}`
+            }
+          });
+          const json = await response.json();
+          
+  
+          if(response.ok){
+            setFavCragsList(json);
+          }
+        }
+  
+        if(user) {
+            fetchCragsList()
+        }
+        
+      }, [crags, user])
+
+      
 
     const filterCrags = ((e) => {
         e.preventDefault();
@@ -52,6 +80,53 @@ const SearchBar = (props) => {
         // eslint-disable-next-line
     }, [searchCrag])    
 
+    const favClickAdd = (cragId) =>{
+        const fetchCragsList = async () => {
+            // Mientras desarrollo. Uso un proxy en package.json, necesario eliminar esa parte de la ruta
+            const response = await fetch(`logged/favorite-crags/${cragId}`, {
+              method: 'POST',
+              headers: {
+                  'Authorization': `Bearer ${user.token}`
+              }
+            });
+            const json = await response.json();
+            
+            if(response.ok){
+                setFavCragsList(json.favorites);
+            }
+          }
+    
+          if(user) {
+              fetchCragsList()
+          }
+    };
+
+    const favClickRemove = (cragId) =>{
+        const fetchCragsList = async () => {
+            // Mientras desarrollo. Uso un proxy en package.json, necesario eliminar esa parte de la ruta
+            const response = await fetch(`logged/favorite-crags/${cragId}`, {
+              method: 'DELETE',
+              headers: {
+                  'Authorization': `Bearer ${user.token}`
+              }
+            });
+            const json = await response.json();
+            
+            if(response.ok){
+                setFavCragsList(json.favorites);
+
+            }
+          }
+    
+          if(user) {
+              fetchCragsList()
+          }
+    }
+
+    useEffect(() => {
+        console.log('Fav list: ', favCragsList);
+    }, [favCragsList])
+
     return(
         <>
             {main ? (
@@ -76,13 +151,29 @@ const SearchBar = (props) => {
             {(destilledCrags.length > 0) ? (
                 destilledCrags.map((crag, index) => { 
                     return (
-                        <Link to={`/sector/${crag._id}`} state={{crag:crag}}>
+                       
                             <div className='search-results__card' key={index}>
-                                <h3>{crag.cragname}</h3>
-                                <p>{crag.locality}</p>
+                                <div className="search-results__card-header">
+                                    <Link to={`/sector/${crag._id}`} state={{crag:crag}}>
+                                        <div className="search-results__card-title">
+                                            <h3>{crag.cragname}</h3>
+                                            <p>{crag.locality}</p>
+                                        </div>
+                                    </Link> 
+                                    {favCragsList && (
+                                        <div className="search-results__card-fav">
+                                            {favCragsList.includes(crag._id) ? (
+                                                <i className="fav-icon fa-solid fa-heart" onClick={() => favClickRemove(crag._id)}></i>
+                                            ):(
+                                                <i className="fav-icon fa-regular fa-heart" onClick={() => favClickAdd(crag._id)}></i>
+                                            )}
+                                        </div>
+                                    )}
+                                </div>
+                                
                                 <WeatherToday crag={crag}/>
                             </div>
-                        </Link> 
+                       
                     )
                 })
             ):(

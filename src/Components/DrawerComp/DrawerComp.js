@@ -1,7 +1,15 @@
 import './DrawerComp.css'
 import {Link} from 'react-router-dom';
+import { useLogout } from '../../hooks/useLogout';
+import { useUsersContext } from '../../hooks/useUsersContext';
 
 const DrawerComp = () => {
+    const { logout } = useLogout();
+    const { user } = useUsersContext()
+
+    const logoutClick = () => {
+        logout();
+      }
 
     return (
         <div className="drawer-comp">
@@ -13,12 +21,31 @@ const DrawerComp = () => {
                         <Link to='/search'>
                             <li>Buscador</li>
                         </Link>
-                        <Link to='/random'>
-                            <li>Regístrate</li>
-                        </Link>
-                        <Link to='/about'>
-                            <li>Login</li>
-                        </Link>
+                        {!user && (
+                            <div className="drawer-unlogged">
+                            <Link to='/register'>
+                                <li>Regístrate</li>
+                            </Link>
+                            <Link to='/login'>
+                                <li>Login</li>
+                            </Link>
+                        </div>
+                        )}
+                        {user && (
+                            <div className="drawer-logged">
+                                <Link to='/favorites'>
+                                    <li>Favoritos</li>    
+                                </Link>
+                                <Link to='/profile'>
+                                    <li>Perfil</li>    
+                                </Link>
+                                <div className="drawer-user">
+                                    <span>{user.email}</span>
+                                    <li onClick={logoutClick} className="drawer-logout" >Log out</li>
+                                </div>   
+                            </div>
+                        )}
+                        
                     </ul>
                 </div>
             </div>

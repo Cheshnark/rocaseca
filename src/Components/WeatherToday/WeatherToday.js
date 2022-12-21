@@ -16,15 +16,12 @@ const WeatherToday = (props) => {
     const fetchCrags = async () => {
       // Mientras desarrollo. Uso un proxy en package.json, necesario eliminar esa parte de la ruta
       const response = await fetch(`http://localhost:8000/main/crags/current-weather/` + cragId);
-      const json = response.json();
+      const json = await response.json();
 
       if(response.ok){
          console.log(json);
       }
     }
-
-    console.log('Current date: ' + currentDate, 'Last date: ' + lastDate, 'One hour to ms: ' + oneHour );
-    console.log(props.crag);
     
     useEffect(() => {
         if ((currentDate - lastDate) > oneHour){
@@ -44,7 +41,7 @@ const WeatherToday = (props) => {
                     console.log(err);
                 }})
         } else {
-            console.log('AHhh, la paraste de pecho!');
+            // console.log('AHhh, la paraste de pecho!');
          };
         
          // eslint-disable-next-line

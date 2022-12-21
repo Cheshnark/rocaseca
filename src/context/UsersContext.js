@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useEffect } from "react";
 
 export const UsersContext = createContext();
 
@@ -17,6 +17,16 @@ export const UsersContextProvider = ({children}) => {
     const [state, dispatch] = useReducer(usersReducer, {
         users: null
     });
+
+    // To check if the user is logged when app renders for the first time
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem('user'));
+
+        if(user) {
+            dispatch({type: 'LOGIN', payload: user})
+        }
+
+    }, [])
 
     console.log('AuthContext state: ', state);
 

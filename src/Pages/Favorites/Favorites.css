@@ -1,0 +1,15 @@
+.favorites {
+    background-color:#f1debe;
+    height: 100%;
+    padding: 8rem 0 1rem 0;
+}
+
+.favorites h2 {
+    text-align: center;
+    padding: 1rem;
+}
+
+.favorites .search-results__card{
+    width: 90%;
+    margin: 1rem auto;
+}

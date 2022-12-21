@@ -32,3 +32,7 @@ nav img {
     transform: translateY(0);
     transition: 1s;
 }
+
+.nav-logout {
+    color: #f1debe;
+}

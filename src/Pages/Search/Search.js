@@ -38,6 +38,7 @@ const Search = (props) => {
             </div>            
         </main>
 
+        <Footer />
         
         </>
     )

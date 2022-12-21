@@ -1,6 +1,9 @@
 import './NavBar.css';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useLogout } from '../../hooks/useLogout';
+import { useUsersContext } from '../../hooks/useUsersContext';
+
 import DrawerComp from '../DrawerComp/DrawerComp';
 import logo from '../../logo2.png';
 
@@ -10,6 +13,8 @@ const NavBar = () => {
     const [visible, setVisible] = useState(true);
     const [shown, setShown] = useState(false); 
     const [hidden,setHidden] = useState("visible")
+    const { logout } = useLogout();
+    const { user } = useUsersContext()
 
     useEffect( () => {
         window.addEventListener('load', handleSize)
@@ -39,7 +44,11 @@ const NavBar = () => {
           document.body.style.overflow = "visible";
           setHidden("visible");
         };    
-      }
+      };
+
+    const logoutClick = () => {
+      logout();
+    }
 
     const handleScroll = () => {
       const currentScrollPos = window.scrollY;
@@ -63,11 +72,22 @@ const NavBar = () => {
             <i className="fa-solid fa-bars" onClick={handleClick} style={{visibility: shown && 'hidden'}} />
           ) : (
             <nav>
-             <ul class="nav-links">
-              <Link to='/search'><li>Buscador</li></Link>
-              <Link to='/'><li>Random</li></Link>
-              <Link to='/about'><li>About</li></Link>
-             </ul>            
+              
+              <ul class="nav-links">
+               <Link to='/search'><li>Buscador</li></Link>
+               {!user && (
+                <div className="nav-unlogged">
+                  <Link to='/'><li>Registrate</li></Link>
+                  <Link to='/about'><li>Login</li></Link>
+                </div>
+               )}
+              </ul>
+              {user && (
+              <div className="nav-logged">
+                <span>{user.email}</span>
+                <button onClick={logoutClick}>Log out</button>  
+              </div> 
+              )}        
           </nav>
           )}
           {shown && (
