@@ -34,7 +34,6 @@ const Search = (props) => {
                 <img src={skull} alt="skull-with-sunny-mountain" />
                 <h2>Busca un sector o localidad</h2>
                 <SearchBar crags={crags}/>
-                <Footer />
             </div>            
         </main>
 

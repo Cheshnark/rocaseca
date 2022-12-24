@@ -37,7 +37,7 @@ const SearchBar = (props) => {
             fetchCragsList()
         }
         
-      }, [crags, user])
+      }, [])
 
       
 
@@ -111,10 +111,10 @@ const SearchBar = (props) => {
               }
             });
             const json = await response.json();
+            console.log(json);
             
             if(response.ok){
                 setFavCragsList(json.favorites);
-
             }
           }
     
@@ -122,10 +122,6 @@ const SearchBar = (props) => {
               fetchCragsList()
           }
     }
-
-    useEffect(() => {
-        console.log('Fav list: ', favCragsList);
-    }, [favCragsList])
 
     return(
         <>
@@ -151,28 +147,26 @@ const SearchBar = (props) => {
             {(destilledCrags.length > 0) ? (
                 destilledCrags.map((crag, index) => { 
                     return (
-                       
-                            <div className='search-results__card' key={index}>
-                                <div className="search-results__card-header">
-                                    <Link to={`/sector/${crag._id}`} state={{crag:crag}}>
-                                        <div className="search-results__card-title">
-                                            <h3>{crag.cragname}</h3>
-                                            <p>{crag.locality}</p>
-                                        </div>
-                                    </Link> 
-                                    {favCragsList && (
-                                        <div className="search-results__card-fav">
-                                            {favCragsList.includes(crag._id) ? (
-                                                <i className="fav-icon fa-solid fa-heart" onClick={() => favClickRemove(crag._id)}></i>
-                                            ):(
-                                                <i className="fav-icon fa-regular fa-heart" onClick={() => favClickAdd(crag._id)}></i>
-                                            )}
-                                        </div>
-                                    )}
-                                </div>
-                                
-                                <WeatherToday crag={crag}/>
+                        <div className='search-results__card' key={index}>
+                            <div className="search-results__card-header">
+                                <Link to={`/sector/${crag._id}`} state={{crag:crag}}>
+                                    <div className="search-results__card-title">
+                                        <h3>{crag.cragname}</h3>
+                                        <p>{crag.locality}</p>
+                                    </div>
+                                </Link> 
+                                {favCragsList && (
+                                    <div className="search-results__card-fav">
+                                        {favCragsList.includes(crag._id) ? (
+                                            <i className="fav-icon fa-solid fa-heart" onClick={() => favClickRemove(crag._id)}></i>
+                                        ):(
+                                            <i className="fav-icon fa-regular fa-heart" onClick={() => favClickAdd(crag._id)}></i>
+                                        )}
+                                    </div>
+                                )}
                             </div>
+                            <WeatherToday crag={crag}/>
+                        </div>
                        
                     )
                 })

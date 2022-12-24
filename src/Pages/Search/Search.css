@@ -1,6 +1,8 @@
 .search {
     background-color:#f1debe;
-    height: 100vh;
+    height: 100%;
+    min-height: 90vh;
+    padding: 12rem 0 1rem 0;
 }
 
 .search-container {
@@ -35,4 +37,14 @@
     padding: 0.5rem;
     border-radius: 3px;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.15);
+}
+
+@media (min-width: 720px) {
+
+    .search-container {
+        width: 50%;
+        margin: 3rem auto 2rem auto;
+        min-width: 480px;
+        max-width: 800px;
+    }
 }

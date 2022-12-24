@@ -45,7 +45,12 @@
 
 .about {
     background-color: #d36067;    
-    scroll-snap-align: center;
+    /* scroll-snap-align: center; */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .main .about-content {
@@ -90,7 +95,7 @@
 /* Register & Login */
 
 .register-login {
-    scroll-snap-align: center;
+    /* scroll-snap-align: center; */
     width: 100%;
 
     display: flex;
@@ -121,4 +126,44 @@
 .register-login-content h2 {
     font-size: 1.5rem;
     margin-bottom: 2rem;
+}
+
+.register-login-content p {
+    color: #f58c4a;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+@media (min-width: 720px) {
+
+    .front img {
+        width: 40%;
+        max-width: 300px;
+    }
+
+    .main .about-content {
+        width: 75%;
+        margin: 10rem auto;
+    }
+
+    .main .about-content p {
+        font-size: 1.5rem;
+    }
+
+    .about button {
+        width: 25%;
+    }
+
+    .register-login-content img {
+        width: 70%;
+        max-width: 600px;
+    }
+}
+
+@media (min-width: 1200px) {
+
+    .main .about-content {
+        width: 50%;
+        margin: 10rem auto;
+    }
 }

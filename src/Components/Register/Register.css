@@ -1,0 +1,39 @@
+@media (min-width: 720px) {
+
+    .register-container {
+        width: 60%;
+        max-width: 1000px;
+        }
+
+    .register-form {
+        width: 75%;
+        min-width: 280px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+
+    .register-form input {
+        width: 75%;
+    }
+
+    .terms {
+        width: 75%;
+        margin: 0 auto 1rem auto;
+
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        align-items: center;
+        justify-items: stretch;
+    }
+
+    .terms input {
+        margin-top: 1rem;
+    }
+
+    .register-form button {
+        margin-bottom: 1.5rem;
+    }
+
+}

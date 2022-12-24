@@ -49,13 +49,26 @@
     border-radius: 3px;
 
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.15);
-
+    transition: 0.15s;
     font-size: 1.2rem;
+}
+
+.to-search:hover {
+    cursor: pointer;
+    background-color: rgba(242, 179, 65, 0.85);
+    transform: scale(1.05);
+    
+    font-weight: 500;
 }
 
 .search-results__card {
     position: relative;
     z-index: 0;
+    transition: 300ms;
+}
+
+.search-results__card:hover {
+    transform: scale(101%);
 }
 
 .search-results__card-header {
@@ -67,6 +80,10 @@
     width: 80%;
 }
 
+.search-results__card-title h3:hover {
+    color: #d36067;
+}
+
 .fav-icon {
     position: relative;
     z-index: 100;
@@ -74,4 +91,5 @@
 
 .fav-icon:hover {
     cursor: pointer;
+    color: #d36067;
 }

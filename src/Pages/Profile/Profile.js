@@ -53,7 +53,7 @@ const Profile = () => {
                     <div className="profile-content__password">
                         <h3>Contraseña</h3>
                         <Link to={'/forgot-password'}>
-                            <p>¿Cambiar contraseña?</p>
+                            <p className='change-password'>¿Cambiar contraseña?</p>
                         </Link>
                     </div>
                     <div className="profile-content__favs">

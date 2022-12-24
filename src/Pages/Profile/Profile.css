@@ -32,13 +32,51 @@
     width: 85%;
 }
 
+.profile-content .change-password {
+    color: #d36067;
+    font-weight: 600;
+}
+
 .profile-content__favs p {
     text-align: center;
-    color: #d36067;
     font-weight: 800;
     font-size: 2rem;
+    color: #d36067;
 }
 
 .profile-content__favs p:hover {
     cursor: pointer;
+}
+
+@media (min-width: 720px) {
+    .profile-content {
+        width: 65%;
+        min-width: 590px;
+        max-width: 780px;
+        margin: 0 auto;
+    }
+
+    .profile-content .change-password {
+        color: #d36067;
+        font-weight: 400;
+        color: #313d49;
+    }
+
+    .profile-content__favs p {
+        text-align: left;
+        margin-left: 0.5rem;
+        transition: 300ms;
+        color: #313d49;
+    }
+
+    .profile-content__favs p:hover {
+        transform: scale(102%);
+        color: #d36067;
+    }
+
+    .profile-content .change-password:hover {
+        transform: scale(102%);
+        font-weight: 600;
+        color: #d36067;
+    }
 }

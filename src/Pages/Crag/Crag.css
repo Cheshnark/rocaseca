@@ -46,3 +46,15 @@
 .info-container {
     text-align: center;
 }
+
+@media (min-width: 720px) {
+    .weather-container {
+        width: 35%;
+        min-width: 650px;
+    }
+
+    .info-container {
+        width: 41.55%;
+        min-width: 650px;
+    }
+}

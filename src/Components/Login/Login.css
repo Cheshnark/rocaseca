@@ -92,3 +92,36 @@
 .login-content span:hover {
     cursor: pointer;
 }
+
+@media (min-width: 720px) {
+
+    .login-container {
+        width: 60%;
+        max-width: 1000px;
+        }
+
+    .login-form {
+        width: 75%;
+        max-width: 350px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .login-form input {
+        width: 75%;
+    }
+
+    .login-form button {
+        margin-bottom: 1.5rem;
+    }
+
+    .login-content p {
+        max-width: 350px;
+        margin: 0 auto;
+
+        text-align: center;
+    }
+}

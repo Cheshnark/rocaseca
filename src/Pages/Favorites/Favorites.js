@@ -35,7 +35,7 @@ const Favorites = () => {
             
         }
         
-      }, [user]);
+      }, [user, favCragsList]);
 
     useEffect(() => {
       const fetchCrags = async () => {

@@ -63,8 +63,6 @@ const Main = () => {
                     de utilidad.</p>
                 </div>
 
-
-              
                 <button>Guía Rocaseca</button>
                 
             </section>
