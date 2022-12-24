@@ -37,7 +37,7 @@ const SearchBar = (props) => {
             fetchCragsList()
         }
         
-      }, [])
+      }, [favCragsList])
 
       
 
