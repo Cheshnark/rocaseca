@@ -6,15 +6,87 @@ import { useUsersContext } from '../../hooks/useUsersContext';
 import WeatherToday from '../WeatherToday/WeatherToday';
 
 
+
 const SearchBar = (props) => {
-    const crags = props.crags;
     const main = props.main;
+    const [crags, setCrags] = useState([]);
+    const [cragsString, setCragsString] = useState([]);
     const [bar, setBar] = useState("");
     const [searchCrag, setSearchCrag] = useState("");
     const [destilledCrags, setDestilledCrags] = useState([]);
+    const [destilledCragsString, setDestilledCragsString] = useState("");
     const [showResults, setShowResults] = useState(false);
     const { user } = useUsersContext();
     const [favCragsList, setFavCragsList] = useState([]);
+    const [favCragsListString, setFavCragListString] = useState("");
+
+    const currentDate = (new Date()).getTime();
+    const oneHour = 60 * 60 * 1000; 
+
+    // Fetchs to DB
+    const fetchCrags = async () => {
+        // Mientras desarrollo. Uso un proxy en package.json, necesario eliminar esa parte de la ruta
+        const response = await fetch('/main/crags/');
+        const json = await response.json();
+
+        if(response.ok){
+           setCrags(json);
+        }
+      }
+
+    const fetchToday = async (cragId) => {
+      // Mientras desarrollo. Uso un proxy en package.json, necesario eliminar esa parte de la ruta
+      const response = await fetch(`http://localhost:8000/main/crags/current-weather/` + cragId);
+      const json = await response.json();
+
+      if(response.ok){
+         console.log(json);
+      }
+    }
+
+
+    // useEffects
+    useEffect(() => {
+        fetchCrags() 
+      }, [destilledCragsString, cragsString])
+
+    //   destilledCragsString, cragsString
+
+    useEffect(() => {
+        let destilledArray = [];
+
+        destilledCrags.forEach(async (crag) => {
+            if ((currentDate - crag.currentUpdate) > oneHour){
+                console.log('Dispara! Dispara!');
+                await fetchToday(crag._id)
+                .then(async res => {
+                    if (!res.ok){
+                        throw Error ('Could not fetch data from that source');
+                    }
+
+                    destilledArray.push(crag._id)
+                    const leFetch = await fetchCrags();
+                    setCrags(leFetch);
+                    setCragsString(() => {
+                        return JSON.stringify(crags);
+                    })
+                    return res.json();
+                })
+                .catch(err => {
+                    console.log(err);
+                    if(err.name === 'AbortError'){
+                        console.log('fetch aborted');
+                    } else {
+                        console.log(err);
+                    }})
+  
+            };
+        });
+
+        console.log(cragsString);
+        
+         // eslint-disable-next-line
+    }, [destilledCragsString])
 
     useEffect(() => {
         const fetchCragsList = async () => {
@@ -30,6 +102,9 @@ const SearchBar = (props) => {
   
           if(response.ok){
             setFavCragsList(json);
+            setFavCragListString(() => {
+                return favCragsList.toString();
+            })
           }
         }
   
@@ -37,9 +112,7 @@ const SearchBar = (props) => {
             fetchCragsList()
         }
         
-      }, [favCragsList])
-
-      
+      }, [favCragsListString])
 
     const filterCrags = ((e) => {
         e.preventDefault();
@@ -67,10 +140,14 @@ const SearchBar = (props) => {
             return nameExist(cragName, searchCragSplit) || cragExist(localityName, searchCragSplit);
         })
 
-        setDestilledCrags(cragsTraps);
+        console.log('HERE!! -> ', cragsTraps);
+        setDestilledCrags(cragsTraps);    
+        setDestilledCragsString(() => {
+            return JSON.stringify(destilledCrags);
+        })    
 
         setShowResults(() => {
-            if (destilledCrags > 0 || searchCrag.length === 0) {
+            if (searchCrag.length === 0) {
                 setShowResults(false);
             } else {
                 setShowResults(true);
@@ -78,7 +155,7 @@ const SearchBar = (props) => {
         });
 
         // eslint-disable-next-line
-    }, [searchCrag])    
+    }, [searchCrag, cragsString])    
 
     const favClickAdd = (cragId) =>{
         const fetchCragsList = async () => {
@@ -93,6 +170,9 @@ const SearchBar = (props) => {
             
             if(response.ok){
                 setFavCragsList(json.favorites);
+                setFavCragListString(() => {
+                    return favCragsList.toString();
+                })
             }
           }
     
@@ -111,10 +191,12 @@ const SearchBar = (props) => {
               }
             });
             const json = await response.json();
-            console.log(json);
             
             if(response.ok){
                 setFavCragsList(json.favorites);
+                setFavCragListString(() => {
+                    return favCragsList.toString();
+                })
             }
           }
     

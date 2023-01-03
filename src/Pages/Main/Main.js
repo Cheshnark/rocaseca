@@ -12,23 +12,7 @@ import LoginButton from '../../Components/LoginButton/LoginButton';
 import RegisterButton from '../../Components/RegisterButton/RegisterButton';
 
 const Main = () => {
-    const [crags, setCrags] = useState([]);
     const { user } = useUsersContext();
-
-    useEffect(() => {
-      const fetchCrags = async () => {
-        // Mientras desarrollo. Uso un proxy en package.json, necesario eliminar esa parte de la ruta
-        const response = await fetch('/main/crags/');
-        const json = await response.json();
-
-        if(response.ok){
-           setCrags(json);
-        }
-      }
-
-      fetchCrags()
-      
-    }, [])
 
     return(
         <>
@@ -39,7 +23,7 @@ const Main = () => {
                     <img src={logo} alt="rocaseca-logo" />
 
                     <h1>ROCASECA</h1>
-                    <SearchBar crags={crags} main={true}/>
+                    <SearchBar main={true}/>
                     {!user && <LoginButton />}
                 </div>
             </section>
