@@ -75,8 +75,6 @@ const NavBar = () => {
                 <Link to={'/profile'}>
                   <li>Perfil</li>
                 </Link>
-                {/* <li className='navbar-user'>
-                  <span>{user.email}</span> */}
                 <li>
                   <button className='navbar-logout' onClick={logoutClick}>Log out</button>  
                 </li>

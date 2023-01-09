@@ -30,7 +30,6 @@ const SearchBar = (props) => {
       request.send(null);
       
       if (request.status === 200) {
-        console.log('fetchCrags successful');
         crags = JSON.parse(request.response);
         return true;
       }else {
@@ -44,7 +43,6 @@ const SearchBar = (props) => {
       request.send(null);
       
       if (request.status === 200) {
-        console.log('fetchToday successful');
         return true;
       }else {
         return false
@@ -124,7 +122,6 @@ const SearchBar = (props) => {
                     changed = true;                    
                 }else {
                     setDestilledCrags(firstFilter);
-                    console.log('Il primo filtero: ', firstFilter);
                 }
             });
         }else {
@@ -132,7 +129,6 @@ const SearchBar = (props) => {
         }
 
         const finalFetch = () => {
-            console.log(idArray);
             idArray.forEach((id) => {
                 fetchToday(id)         
             })
