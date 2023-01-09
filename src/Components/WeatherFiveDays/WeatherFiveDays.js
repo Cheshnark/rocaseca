@@ -1,61 +1,71 @@
 import './WeatherFiveDays.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import WeatherIcon from '../WeatherIcon/WeatherIcon';
 
+let crag = {};
+
 const WeatherFiveDays = () => {
     const location = useLocation();
-    const crag = location.state?.crag;
+    crag = location.state?.crag;
     let cragId = crag._id;
-    const fiveDaysWeather = crag.fiveDaysWeather;
+    const [fiveDaysWeather, setFiveDaysWeather] = useState(crag.fiveDaysWeather);
+    const [lastDate, setLastDate] = useState(crag.fiveDaysUpdate);
+
     const today = (new Date()).getDate();
     const month = (new Date()).getMonth();
-
-    const lastDate = crag.fiveDaysUpdate;
     const currentDate = (new Date()).getTime();
     const oneHour = 60 * 60 * 1000; 
 
+    // Fetchs 
 
-    const fetchCrags = async () => {
-      // Mientras desarrollo. Uso un proxy en package.json, necesario eliminar esa parte de la ruta
-      const response = await fetch(`http://localhost:8000/main/crags/five-days/` + cragId);
-      const json = response.json();
+    const fetchCrag = () => {
+        const request = new XMLHttpRequest();
+        request.open('GET', `http://localhost:8000/main/crags/` + cragId, false);  
+        request.send(null);
+        
+        if (request.status === 200) {
+          console.log('fetchCrags successful');
+          crag = JSON.parse(request.response);
+          return true;
+        }else {
+          return false
+        }
+        }
 
-      if(response.ok){
-         console.log(json);
+    const fetchFive = async () => {
+      const request = new XMLHttpRequest();
+      request.open('GET', `http://localhost:8000/main/crags/five-days/` + cragId , false);  
+      request.send(null);
+      
+      if (request.status === 200) {
+        console.log('fetchFive successful');
+        return true;
+      }else {
+        return false
       }
     }
 
  
     useEffect(() => {
-        if ((currentDate - lastDate) > oneHour || !lastDate){
-            console.log('Dispara! Dispara!');
-            fetchCrags()
-            .then(res => {
-                if (!res.ok){
-                    throw Error ('Could not fetch data from that source');
-                }
-                return res.json();
-            })
-            .catch(err => {
-                console.log(err);
-                if(err.name === 'AbortError'){
-                    console.log('fetch aborted');
-                } else {
-                    console.log(err);
-                }})
+        if ((currentDate - lastDate) > oneHour || !lastDate){        
+            fetchFive();
+            fetchCrag();
+            setFiveDaysWeather(crag.fiveDaysWeather);
+            setLastDate(crag.fiveDaysUpdate);
         } else {
             console.log('AHhh, la paraste de pecho!');
          };
         
          // eslint-disable-next-line
-    }, [fiveDaysWeather])
+    }, [])
 
     return (
         <div className="five-days">
             <div className="five-days-container">
-                {fiveDaysWeather.FiveDays.map((day, index) =>{
+                {fiveDaysWeather && 
+                fiveDaysWeather.FiveDays.map((day, index) =>{
                     return(
                     <div className="five-days-day" key={index}>
                     <h4>

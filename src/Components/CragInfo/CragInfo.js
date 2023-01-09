@@ -8,6 +8,7 @@ const CragInfo = () => {
 
     return (
         <div className="crag-info">
+        {cragInfo ? (
             <div className="crag-info__container">
                 <p>{cragInfo.Description}</p>
                 <h4>¿Dónde dormir?</h4>
@@ -20,6 +21,10 @@ const CragInfo = () => {
                 <p>La información del sector ha sido extraida de "enlavertical.com", para acceder a más
                 información de la escuela y sus sectores, visita: <a href={cragInfo.Website} target="_blank" rel="noreferrer">{cragInfo.Website}</a> .</p>
             </div>
+        ):(
+            <p>Lo sentimos ser de la roca, no tenemos información de este sector</p>
+        )}
+            
         </div>
     )
 };

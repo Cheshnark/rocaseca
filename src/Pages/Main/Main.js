@@ -1,5 +1,4 @@
 import './Main.css';
-import { useEffect, useState } from 'react';
 import { useUsersContext } from '../../hooks/useUsersContext';
 
 //Componentes

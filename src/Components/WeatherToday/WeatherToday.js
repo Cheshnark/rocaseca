@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import './WeatherToday.css';
 
 import WeatherIcon from '../WeatherIcon/WeatherIcon';

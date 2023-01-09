@@ -9,7 +9,6 @@ import logo from '../../logo2.png';
 
 const NavBar = () => {
     const [prevScrollPos, setPrevScrollPos] = useState(0);
-    const [isMobile, setIsMobile] = useState(null);
     const [visible, setVisible] = useState(true);
     const [shown, setShown] = useState(false); 
     const [hidden,setHidden] = useState("visible")
@@ -17,22 +16,10 @@ const NavBar = () => {
     const { user } = useUsersContext()
 
     useEffect( () => {
-        window.addEventListener('load', handleSize)
-      }, []);
-
-    useEffect( () => {
       window.addEventListener('scroll', handleScroll);
   
       return () => window.removeEventListener('scroll', handleScroll)
     })
-
-    const handleSize = () => {
-      if (window.innerWidth < 800) {
-        setIsMobile(true);
-      } else{
-        setIsMobile(false);
-      }
-    }
 
     const handleClick = () => {
         setShown(!shown);

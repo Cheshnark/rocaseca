@@ -1,7 +1,7 @@
 .crag-info {
     margin-top: 1rem;
     width: 93%;
-
+    min-height: 16vh;
 }
 
 .crag-info__container h4{

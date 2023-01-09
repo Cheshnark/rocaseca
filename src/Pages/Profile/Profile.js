@@ -10,6 +10,8 @@ const Profile = () => {
     const { user } = useUsersContext();
     const [userInfo, setUserInfo] = useState();
 
+    console.log(user);
+
     useEffect(() => {
         const fetchUser = async () => {
           // Mientras desarrollo. Uso un proxy en package.json, necesario eliminar esa parte de la ruta
