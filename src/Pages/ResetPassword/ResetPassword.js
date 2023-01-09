@@ -12,7 +12,7 @@ const ResetPassword = () => {
 
         // const user = {username, email, password};
 
-        const response = await fetch('/user/forgot-password', {
+        const response = await fetch('https://rocaseca-server-production.up.railway.app//user/forgot-password', {
             method: 'POST',
             // body: JSON.stringify(email),
             headers: {

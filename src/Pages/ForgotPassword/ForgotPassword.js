@@ -12,7 +12,7 @@ const ForgotPassword = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const response = await fetch('/user/forgot-password', {
+        const response = await fetch('https://rocaseca-server-production.up.railway.app/user/forgot-password', {
             method: 'POST',
             body: JSON.stringify({email:email}),
             headers: {

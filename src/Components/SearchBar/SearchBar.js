@@ -58,7 +58,7 @@ const SearchBar = (props) => {
     useEffect(() => {
         const fetchCragsList = async () => {
           // Mientras desarrollo. Uso un proxy en package.json, necesario eliminar esa parte de la ruta
-          const response = await fetch('logged/favorite-crags-list', {
+          const response = await fetch('https://rocaseca-server-production.up.railway.app/logged/favorite-crags-list', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${user.token}`
@@ -158,7 +158,7 @@ const SearchBar = (props) => {
     const favClickAdd = (cragId) =>{
         const fetchCragsList = async () => {
             // Mientras desarrollo. Uso un proxy en package.json, necesario eliminar esa parte de la ruta
-            const response = await fetch(`logged/favorite-crags/${cragId}`, {
+            const response = await fetch(`https://rocaseca-server-production.up.railway.app/logged/favorite-crags/${cragId}`, {
               method: 'POST',
               headers: {
                   'Authorization': `Bearer ${user.token}`
@@ -182,7 +182,7 @@ const SearchBar = (props) => {
     const favClickRemove = (cragId) =>{
         const fetchCragsList = async () => {
             // Mientras desarrollo. Uso un proxy en package.json, necesario eliminar esa parte de la ruta
-            const response = await fetch(`logged/favorite-crags/${cragId}`, {
+            const response = await fetch(`https://rocaseca-server-production.up.railway.app/logged/favorite-crags/${cragId}`, {
               method: 'DELETE',
               headers: {
                   'Authorization': `Bearer ${user.token}`

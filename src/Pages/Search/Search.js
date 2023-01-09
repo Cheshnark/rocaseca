@@ -13,7 +13,7 @@ const Search = (props) => {
     useEffect(() => {
       const fetchCrags = async () => {
         // Mientras desarrollo. Uso un proxy en package.json, necesario eliminar esa parte de la ruta
-        const response = await fetch('/main/crags/');
+        const response = await fetch('https://rocaseca-server-production.up.railway.app/main/crags/');
         const json = await response.json();
 
         if(response.ok){

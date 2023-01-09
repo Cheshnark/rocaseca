@@ -15,7 +15,7 @@ const Profile = () => {
     useEffect(() => {
         const fetchUser = async () => {
           // Mientras desarrollo. Uso un proxy en package.json, necesario eliminar esa parte de la ruta
-          const response = await fetch('logged/user-info', {
+          const response = await fetch('https://rocaseca-server-production.up.railway.app/logged/user-info', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${user.token}`
