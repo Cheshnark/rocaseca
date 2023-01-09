@@ -19,7 +19,7 @@ const Register = () => {
 
         const user = {username, email, password};
 
-        const response = await fetch('/user/register', {
+        const response = await fetch('https://rocaseca-server-production.up.railway.app/user/register', {
             method: 'POST',
             body: JSON.stringify(user),
             headers: {
@@ -94,7 +94,7 @@ const Register = () => {
                        <button type='submit'>Regístrate</button>
                    </form>
                    {error ? (<div className='error'>{error}</div>):
-                       (<p> O <Link to={'login'}><span>ENTRA</span></Link> si ya tienes una cuenta</p>)}
+                       (<p> O <Link to={'/login'}><span>ENTRA</span></Link> si ya tienes una cuenta</p>)}
                </div>
             </div>
      
