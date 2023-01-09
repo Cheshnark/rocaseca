@@ -26,7 +26,7 @@ const SearchBar = (props) => {
     // Fetchs to DB
     const fetchCrags = () => {
       const request = new XMLHttpRequest();
-      request.open('GET', `http://localhost:8000/main/crags/`, false);  
+      request.open('GET', `https://rocaseca-server-production.up.railway.app/main/crags/`, false);  
       request.send(null);
       
       if (request.status === 200) {
@@ -40,7 +40,7 @@ const SearchBar = (props) => {
 
     const fetchToday =  (cragId) => {
       const request = new XMLHttpRequest();
-      request.open('GET', `http://localhost:8000/main/crags/current-weather/` + cragId , false);  
+      request.open('GET', `https://rocaseca-server-production.up.railway.app/main/crags/current-weather/` + cragId , false);  
       request.send(null);
       
       if (request.status === 200) {

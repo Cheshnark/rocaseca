@@ -22,7 +22,7 @@ const WeatherFiveDays = () => {
 
     const fetchCrag = () => {
         const request = new XMLHttpRequest();
-        request.open('GET', `http://localhost:8000/main/crags/` + cragId, false);  
+        request.open('GET', `https://rocaseca-server-production.up.railway.app/main/crags/` + cragId, false);  
         request.send(null);
         
         if (request.status === 200) {
@@ -36,7 +36,7 @@ const WeatherFiveDays = () => {
 
     const fetchFive = async () => {
       const request = new XMLHttpRequest();
-      request.open('GET', `http://localhost:8000/main/crags/five-days/` + cragId , false);  
+      request.open('GET', `https://rocaseca-server-production.up.railway.app/main/crags/five-days/` + cragId , false);  
       request.send(null);
       
       if (request.status === 200) {

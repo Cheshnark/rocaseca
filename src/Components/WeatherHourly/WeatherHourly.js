@@ -23,7 +23,7 @@ const WeatherHourly = () => {
 
     const fetchCrag = () => {
         const request = new XMLHttpRequest();
-        request.open('GET', `http://localhost:8000/main/crags/` + cragId, false);  
+        request.open('GET', `https://rocaseca-server-production.up.railway.app/main/crags/` + cragId, false);  
         request.send(null);
         
         if (request.status === 200) {
@@ -37,7 +37,7 @@ const WeatherHourly = () => {
 
     const fetchHourly = async () => {
       const request = new XMLHttpRequest();
-      request.open('GET', `http://localhost:8000/main/crags/hourly-weather/` + cragId , false);  
+      request.open('GET', `https://rocaseca-server-production.up.railway.app/main/crags/hourly-weather/` + cragId , false);  
       request.send(null);
       
       if (request.status === 200) {

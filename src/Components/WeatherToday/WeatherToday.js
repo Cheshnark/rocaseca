@@ -3,8 +3,6 @@ import './WeatherToday.css';
 import WeatherIcon from '../WeatherIcon/WeatherIcon';
 
 const WeatherToday = (props) => {
-
-    let cragId = props.crag._id;
     const cragCurrentWeather = props.crag.currentWeather;
     
     return (
