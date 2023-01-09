@@ -69,10 +69,9 @@ const NavBar = () => {
             <div className="img-container">
               <Link to='/'><img src={logo} alt="rocaseca-logo" /></Link> 
             </div>
-            {isMobile ? (
-            <i className="fa-solid fa-bars" onClick={handleClick} style={{visibility: shown && 'hidden'}} />
-          ) : (
-            <>
+            
+            <i className="mobile-navigation fa-solid fa-bars" onClick={handleClick} style={{visibility: shown && 'hidden'}} />  
+            <div className='navigation'>
                {!user && (
                 <ul className="nav-unlogged">
                   <Link to='/search'><li>Buscador</li></Link>
@@ -96,8 +95,7 @@ const NavBar = () => {
                 </li>
               </ul> 
               )}        
-            </>
-          )}
+            </div>
           {shown && (
             <div onClick={handleClick}>
               <div className="div-drawercomp">

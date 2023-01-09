@@ -5,15 +5,17 @@ import { useUsersContext } from '../../hooks/useUsersContext';
 
 import WeatherToday from '../WeatherToday/WeatherToday';
 
-
+let crags = [];
+let searchCrag = "";
 
 const SearchBar = (props) => {
     const main = props.main;
-    const [crags, setCrags] = useState([]);
-    const [cragsString, setCragsString] = useState([]);
+    //const [crags, setCrags] = useState([]);
+    
+    const [cragsString, setCragsString] = useState("");
     const [bar, setBar] = useState("");
-    const [searchCrag, setSearchCrag] = useState("");
-    const [destilledCrags, setDestilledCrags] = useState([]);
+    // const [searchCrag, setSearchCrag] = useState("");
+    const [destilledCrags, setDestilledCrags] = useState(null);
     const [destilledCragsString, setDestilledCragsString] = useState("");
     const [showResults, setShowResults] = useState(false);
     const { user } = useUsersContext();
@@ -24,24 +26,41 @@ const SearchBar = (props) => {
     const oneHour = 60 * 60 * 1000; 
 
     // Fetchs to DB
-    const fetchCrags = async () => {
-        // Mientras desarrollo. Uso un proxy en package.json, necesario eliminar esa parte de la ruta
-        const response = await fetch('/main/crags/');
-        const json = await response.json();
-
-        if(response.ok){
-           setCrags(json);
-        }
+    const fetchCrags = () => {
+      const request = new XMLHttpRequest();
+      request.open('GET', `http://localhost:8000/main/crags/`, false);  
+      request.send(null);
+      
+      if (request.status === 200) {
+        console.log('fetchCrags successful');
+        crags = JSON.parse(request.response);
+        setCragsString(() => {
+          return request.response;
+        })
+        return true;
+      }else {
+        return false
+      }
       }
 
-    const fetchToday = async (cragId) => {
+    const fetchToday =  (cragId) => {
+      const request = new XMLHttpRequest();
+      request.open('GET', `http://localhost:8000/main/crags/current-weather/` + cragId , false);  
+      request.send(null);
+      
+      if (request.status === 200) {
+        console.log('fetchToday successful');
+        return true;
+      }else {
+        return false
+      }
       // Mientras desarrollo. Uso un proxy en package.json, necesario eliminar esa parte de la ruta
-      const response = await fetch(`http://localhost:8000/main/crags/current-weather/` + cragId);
-      const json = await response.json();
+      // const response = await fetch(`http://localhost:8000/main/crags/current-weather/` + cragId);
+      // const json = await response.json();
 
-      if(response.ok){
-         console.log(json);
-      }
+      // if(response.ok){
+      //    console.log('fetchToday successful');
+      // }
     }
 
 
@@ -52,41 +71,41 @@ const SearchBar = (props) => {
 
     //   destilledCragsString, cragsString
 
-    useEffect(() => {
-        let destilledArray = [];
+    // useEffect(() => {
+    //     let destilledArray = [];
 
-        destilledCrags.forEach(async (crag) => {
-            if ((currentDate - crag.currentUpdate) > oneHour){
-                console.log('Dispara! Dispara!');
-                await fetchToday(crag._id)
-                .then(async res => {
-                    if (!res.ok){
-                        throw Error ('Could not fetch data from that source');
-                    }
+    //     destilledCrags.forEach(async (crag) => {
+    //         if ((currentDate - crag.currentUpdate) > oneHour){
+    //             console.log('Dispara! Dispara!');
+    //             await fetchToday(crag._id)
+    //             .then(async res => {
+    //                 if (!res.ok){
+    //                     throw Error ('Could not fetch data from that source');
+    //                 }
 
-                    destilledArray.push(crag._id)
-                    const leFetch = await fetchCrags();
-                    setCrags(leFetch);
-                    setCragsString(() => {
-                        return JSON.stringify(crags);
-                    })
-                    return res.json();
-                })
-                .catch(err => {
-                    console.log(err);
-                    if(err.name === 'AbortError'){
-                        console.log('fetch aborted');
-                    } else {
-                        console.log(err);
-                    }})
+    //                 destilledArray.push(crag._id)
+    //                 const leFetch = await fetchCrags();
+    //                 setCrags(leFetch);
+    //                 setCragsString(() => {
+    //                     return JSON.stringify(crags);
+    //                 })
+    //                 return res.json();
+    //             })
+    //             .catch(err => {
+    //                 console.log(err);
+    //                 if(err.name === 'AbortError'){
+    //                     console.log('fetch aborted');
+    //                 } else {
+    //                     console.log(err);
+    //                 }})
   
-            };
-        });
+    //         };
+    //     });
 
-        console.log(cragsString);
+    //     console.log(cragsString);
         
-         // eslint-disable-next-line
-    }, [destilledCragsString])
+    //      // eslint-disable-next-line
+    // }, [destilledCragsString])
 
     useEffect(() => {
         const fetchCragsList = async () => {
@@ -116,12 +135,49 @@ const SearchBar = (props) => {
 
     const filterCrags = ((e) => {
         e.preventDefault();
-        setSearchCrag(bar.toLowerCase());
+        searchCrag = bar.toLowerCase();
         setBar("");
       })
 
+    // useEffect(() => {
+    //     const cragsTraps = crags.filter((crag) => {
+    //         const cragName = (crag.cragname).toLowerCase().split(/\s+/);
+    //         const localityName = (crag.locality).toLowerCase().split(/\s+/);
+    //         const searchCragSplit = searchCrag.split(/\s+/);
+
+    //         const nameExist = (name, search) => {
+    //             return search.every(search => {
+    //                 return name.indexOf(search) !== -1;
+    //             })
+    //         } 
+    //         const cragExist = (name, search) => {
+    //             return search.every(search => {
+    //                 return name.indexOf(search) !== -1;
+    //             })
+    //         } 
+
+    //         return nameExist(cragName, searchCragSplit) || cragExist(localityName, searchCragSplit);
+    //     })
+
+    //     console.log('HERE!! -> ', cragsTraps);
+    //     setDestilledCrags(cragsTraps);    
+    //     setDestilledCragsString(() => {
+    //         return JSON.stringify(destilledCrags);
+    //     })    
+
+    //     setShowResults(() => {
+    //         if (searchCrag.length === 0) {
+    //             setShowResults(false);
+    //         } else {
+    //             setShowResults(true);
+    //         }
+    //     });
+
+    //     // eslint-disable-next-line
+    // }, [searchCrag, cragsString])    
+
     useEffect(() => {
-        const cragsTraps = crags.filter((crag) => {
+        const firstFilter = crags.filter((crag) => {
             const cragName = (crag.cragname).toLowerCase().split(/\s+/);
             const localityName = (crag.locality).toLowerCase().split(/\s+/);
             const searchCragSplit = searchCrag.split(/\s+/);
@@ -140,11 +196,45 @@ const SearchBar = (props) => {
             return nameExist(cragName, searchCragSplit) || cragExist(localityName, searchCragSplit);
         })
 
-        console.log('HERE!! -> ', cragsTraps);
-        setDestilledCrags(cragsTraps);    
-        setDestilledCragsString(() => {
-            return JSON.stringify(destilledCrags);
-        })    
+        let idArray = [];
+        let changed = false;
+
+        if(firstFilter.length > 0){
+            firstFilter.forEach((crag) => {
+                const cragId = crag._id;   
+                idArray.push(cragId);
+
+                if((currentDate - crag.currentUpdate) > oneHour){
+                    changed = true;                    
+                }else {
+                    setDestilledCrags(firstFilter);
+                    console.log('Il primo filtero: ', firstFilter);
+                }
+            });
+        }else {
+            setDestilledCrags(null);
+        }
+
+        const finalFetch = () => {
+            console.log(idArray);
+            idArray.forEach((id) => {
+                fetchToday(id)         
+            })
+            fetchCrags();
+            
+            const secondFilter = crags.filter(crag => {
+                return idArray.includes(crag._id);
+            });
+            console.log('Il secondo filtero: ', secondFilter);
+            setDestilledCrags(secondFilter)
+            // setDestilledCragsString(() => {
+            //     return JSON.stringify(secondFilter);
+            // });   
+    }
+
+        if(changed) {  
+            finalFetch()        
+        } 
 
         setShowResults(() => {
             if (searchCrag.length === 0) {
@@ -155,7 +245,7 @@ const SearchBar = (props) => {
         });
 
         // eslint-disable-next-line
-    }, [searchCrag, cragsString])    
+    }, [searchCrag])    
 
     const favClickAdd = (cragId) =>{
         const fetchCragsList = async () => {
@@ -226,7 +316,7 @@ const SearchBar = (props) => {
         {showResults && (
             <div className="search-results-container">
             <div className="search-results">
-            {(destilledCrags.length > 0) ? (
+            {(destilledCrags) ? (
                 destilledCrags.map((crag, index) => { 
                     return (
                         <div className='search-results__card' key={index}>

@@ -77,22 +77,6 @@ nav img {
         transform: scale(105%);
     }
 
-    /* .navbar-user {
-        background-color: #f2b341;
-        text-align: right;
-        border-radius: 3px;
-        padding: 0.25rem 0.5rem 0.25rem 0.5rem;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-    
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0;
-
-        font-size: 1.1rem;
-    } */
-
     .navbar-user span {
         margin-bottom: 0.5rem;
     }
@@ -115,4 +99,26 @@ nav img {
 
     }
 
+}
+
+/* Hamburger menu */
+.nav-container .mobile-navigation {
+    display: none;
+}
+
+@media (max-width: 720px) {
+    .nav-container .navigation {
+        display: none;
+    }
+
+    .nav-container .mobile-navigation {
+        display:block;
+        transition: 300ms;
+    }
+
+    .nav-container .mobile-navigation:hover {
+        cursor: pointer;
+        color: #f2b341;
+        transform: scale(110%);
+    }
 }
