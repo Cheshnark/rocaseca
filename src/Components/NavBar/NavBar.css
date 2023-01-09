@@ -1,0 +1,124 @@
+nav {
+    position: fixed;
+    width: 100%;
+    padding: 0 3.5rem 0 0;
+
+    z-index: 1;
+
+    background-color: #f1debe;
+
+    transform: translateY(-100%);
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav .img-container {
+    width: 7rem;
+    margin-left: 0.5rem;
+}
+
+nav img {
+    width: 100%;
+}
+
+.div-drawercomp {
+    transform: translateZ(-100%);
+    transition: transform 2s;
+}
+
+.smooth {
+    transform: translateY(0);
+    transition: 1s;
+}
+
+.nav-logout {
+    color: #f1debe;
+}
+
+@media (min-width: 720px) {
+
+    nav {
+        display: inline-block;
+    }
+
+    .nav-container {
+        width: 97%;
+        margin: 0 auto 0 auto;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .nav-unlogged {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .nav-logged {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    nav li {
+        font-size: 1.5rem;
+        color: #313d49;
+        margin-top: 0 auto;
+        transition: 300ms;
+    }
+
+    nav li:hover {
+        color: #f2b341;
+        transform: scale(105%);
+    }
+
+    .navbar-user span {
+        margin-bottom: 0.5rem;
+    }
+    
+    .navbar-logout {
+        background-color: #313d49;
+        color: #f1debe;
+        padding: 0.25rem 0.7rem 0.5rem 0.7rem;
+        border-radius: 3px;
+        margin-bottom: 0.5rem;
+        transition: 300ms;
+    }
+
+    .navbar-logout:hover {
+        cursor: pointer;
+        background-color: #f2b341;
+        color: #313d49;
+        font-weight: 600;
+        font-size: 1.01rem;
+
+    }
+
+}
+
+/* Hamburger menu */
+.nav-container .mobile-navigation {
+    display: none;
+}
+
+@media (max-width: 720px) {
+    .nav-container .navigation {
+        display: none;
+    }
+
+    .nav-container .mobile-navigation {
+        display:block;
+        transition: 300ms;
+    }
+
+    .nav-container .mobile-navigation:hover {
+        cursor: pointer;
+        color: #f2b341;
+        transform: scale(110%);
+    }
+}
