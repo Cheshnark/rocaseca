@@ -65,7 +65,7 @@ const Main = () => {
                     ):(
                         <>
                             <h2>¿ECHAS EN FALTA ALGÚN SECTOR? ESCRÍBENOS</h2>
-                            <p>rocaseca.app@gmail.com</p>
+                            <a href="mailto:rocaseca.app@gmail.com"><p>rocaseca.app@gmail.com</p></a>
                         </>
                     )}
                 </div>

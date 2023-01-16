@@ -18,8 +18,10 @@
 .menu {
     position: absolute;
     height: 100vh;
-    width: 50vw;
+    width: 65vw;
     background-color: white;
+
+    padding-right: 1rem;
 }
 
 .menu i {
@@ -29,16 +31,15 @@
 }
 
 .drawer-comp__content {
-    position: absolute;
-    top: 25%;
-    padding: 0.5rem;
-    margin: auto 0.5rem;
+    position: relative;
+    top: 10%;
+    margin: auto 1rem;
     
 }
 
 
 .drawer-comp h2 {
-    text-align: center;
+    text-align: right;
     font-size: 5rem;
 }
 

@@ -14,7 +14,7 @@ const Favorites = () => {
     const { user } = useUsersContext();
 
     useEffect(() => {
-        const fetchCrags = async () => {
+        const fetchFavoriteCrags = async () => {
           // Mientras desarrollo. Uso un proxy en package.json, necesario eliminar esa parte de la ruta
           const response = await fetch('https://rocaseca-server-production.up.railway.app/logged/favorite-crags-list', {
             method: 'GET',
@@ -31,7 +31,7 @@ const Favorites = () => {
         }
   
         if(user) {
-            fetchCrags()
+            fetchFavoriteCrags()
             
         }
         
@@ -40,7 +40,7 @@ const Favorites = () => {
     useEffect(() => {
       const fetchCrags = async () => {
         // Mientras desarrollo. Uso un proxy en package.json, necesario eliminar esa parte de la ruta
-        const response = await fetch('https://rocaseca-server-production.up.railway.app//main/crags/');
+        const response = await fetch('https://rocaseca-server-production.up.railway.app/main/crags/');
         const json = await response.json();
 
         if(response.ok){
