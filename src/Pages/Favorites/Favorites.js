@@ -90,7 +90,7 @@ const Favorites = () => {
       <NavBar />
         <main className="favorites">
             <h2>Sectores Favoritos</h2>
-            {user && (  
+            {user && favCrags && (  
             favCrags.map((crag, index) => { 
               return (
                 <div className='search-results__card' key={index}>
