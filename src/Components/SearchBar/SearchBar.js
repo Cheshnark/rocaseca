@@ -209,20 +209,16 @@ const SearchBar = (props) => {
 
     return(
         <>
-            {main ? (
-                <Link to={'/search'}>
-                    <button className='to-search'><i class="fa-solid fa-magnifying-glass"></i> Busca sectores o localidades</button>
-                </Link>
-            ):(
-                <form className='search-bar'>
-                    <input 
-                        type='text' 
-                        placeholder='Busca un sector '
-                        value={bar} 
-                        onChange={(e) => {setBar(e.target.value)}}/>
-                    <button onClick={filterCrags}><i class="fa-solid fa-magnifying-glass"></i></button>
-                </form>
-            )}
+            
+        <form className='search-bar'>
+            <input 
+                type='text' 
+                placeholder='Busca un sector '
+                value={bar} 
+                onChange={(e) => {setBar(e.target.value)}}/>
+            <button onClick={filterCrags}><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+    
             
         {pending && <h3>Loading...</h3>}
         {showResults && (

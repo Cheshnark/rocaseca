@@ -23,7 +23,7 @@ const Main = () => {
                     <img src={logo} alt="rocaseca-logo" />
 
                     <h1>ROCASECA</h1>
-                    <Link to='/search'><button className='search-btn'>Buscador</button></Link>
+                    <Link to='/search'><button className='to-search'><i class="fa-solid fa-magnifying-glass"></i>Busca sectores o localidades</button></Link>
                     {!user && <LoginButton />}
                 </div>
             </section>

@@ -67,6 +67,10 @@
     font-weight: 500;
 }
 
+.to-search i {
+    margin-right: 1rem;
+}
+
 /* About */
 
 .about {
