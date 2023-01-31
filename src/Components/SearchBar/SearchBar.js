@@ -8,6 +8,7 @@ import WeatherToday from '../WeatherToday/WeatherToday';
 
 let crags = [];
 let searchCrag = "";
+let pending = false;
 
 const SearchBar = (props) => {
     const main = props.main;
@@ -38,21 +39,21 @@ const SearchBar = (props) => {
       }
 
     const fetchToday =  (cragId) => {
-      const request = new XMLHttpRequest();
-      request.open('GET', `https://rocaseca-server-production.up.railway.app/main/crags/current-weather/` + cragId , false);  
-      request.send(null);
+        const request = new XMLHttpRequest();
+        request.open('GET', `https://rocaseca-server-production.up.railway.app/main/crags/current-weather/` + cragId , false);  
+        request.send(null);
       
-      if (request.status === 200) {
-        return true;
-      }else {
-        return false
-      }
+        if (request.status === 200) {
+            return true;
+        }else {
+            return false
+        }
     }
 
     // useEffects
     useEffect(() => {
         fetchCrags();
-        searchCrag = ""; 
+        searchCrag = "";
       }, [])
 
     useEffect(() => {
@@ -119,7 +120,7 @@ const SearchBar = (props) => {
                 idArray.push(cragId);
 
                 if((currentDate - crag.currentUpdate) > oneHour){
-                    changed = true;                    
+                    changed = true;                  
                 }else {
                     setDestilledCrags(firstFilter);
                 }
@@ -133,22 +134,25 @@ const SearchBar = (props) => {
                 fetchToday(id)         
             })
             fetchCrags();
-            
             const secondFilter = crags.filter(crag => {
                 return idArray.includes(crag._id);
             });
-            setDestilledCrags(secondFilter);
+            setDestilledCrags(secondFilter);  
     }
 
         if(changed) {  
-            finalFetch()        
+            pending = true
+            finalFetch() 
+            pending = false   
         } 
 
         setShowResults(() => {
             if (searchCrag.length === 0) {
                 setShowResults(false);
+                pending = false
             } else {
                 setShowResults(true);
+                pending = false
             }
         });
 
@@ -220,7 +224,7 @@ const SearchBar = (props) => {
                 </form>
             )}
             
-        
+        {pending && <h3>Loading...</h3>}
         {showResults && (
             <div className="search-results-container">
             <div className="search-results">
@@ -235,7 +239,7 @@ const SearchBar = (props) => {
                                         <p>{crag.locality}</p>
                                     </div>
                                 </Link> 
-                                {favCragsList && (
+                                {favCragsList && user && (
                                     <div className="search-results__card-fav">
                                         {favCragsList.includes(crag._id) ? (
                                             <i className="fav-icon fa-solid fa-heart" onClick={() => favClickRemove(crag._id)}></i>

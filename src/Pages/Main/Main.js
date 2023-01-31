@@ -1,5 +1,6 @@
 import './Main.css';
 import { useUsersContext } from '../../hooks/useUsersContext';
+import { Link } from 'react-router-dom';
 
 //Componentes
 import logo from '../../logo2.png';
@@ -22,7 +23,7 @@ const Main = () => {
                     <img src={logo} alt="rocaseca-logo" />
 
                     <h1>ROCASECA</h1>
-                    <SearchBar main={true}/>
+                    <Link to='/search'><button className='search-btn'>Buscador</button></Link>
                     {!user && <LoginButton />}
                 </div>
             </section>
