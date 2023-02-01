@@ -9,11 +9,11 @@ import Footer from '../../Components/Footer/Footer';
 const Profile = () => {
     const { user } = useUsersContext();
     const [userInfo, setUserInfo] = useState();
-
-    console.log(user);
+    const [pending, setPending] = useState(false)
 
     useEffect(() => {
         const fetchUser = async () => {
+            setPending(true)
           // Mientras desarrollo. Uso un proxy en package.json, necesario eliminar esa parte de la ruta
           const response = await fetch('https://rocaseca-server-production.up.railway.app/logged/user-info', {
             method: 'GET',
@@ -31,17 +31,17 @@ const Profile = () => {
   
         if(user) {
             fetchUser()
+            setPending(false)
         }
         
       }, [user])
-
-      console.log(userInfo);
 
     return (
         <>
             <NavBar />
             <main className="profile">
                 <h2>Perfil de usuario</h2>
+                {setPending && !userInfo && <h3 className='profile-loading'>Loading...</h3> }
                 {userInfo && (
                 <div className="profile-content">
                     <div className="profile-content__user">

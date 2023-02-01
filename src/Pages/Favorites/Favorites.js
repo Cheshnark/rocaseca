@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { useUsersContext } from '../../hooks/useUsersContext';
 import { Link } from 'react-router-dom';
 
+import { fetchDelete } from '../../Components/favoriteFetchs';
+
 import NavBar from '../../Components/NavBar/NavBar';
 import WeatherToday from '../../Components/WeatherToday/WeatherToday';
 import Footer from '../../Components/Footer/Footer';
@@ -11,6 +13,8 @@ const Favorites = () => {
     const [crags, setCrags] = useState([]);
     const [favCragsList, setFavCragsList] = useState([]);
     let [favCrags, setFavCrags] = useState([]);
+    const[pending, setPending] = useState(true);
+    const [pendingHeart, setPendingHeart] = useState(false);
     const { user } = useUsersContext();
 
     useEffect(() => {
@@ -31,8 +35,7 @@ const Favorites = () => {
         }
   
         if(user) {
-            fetchFavoriteCrags()
-            
+            fetchFavoriteCrags()            
         }
         
       }, [user, favCragsList]);
@@ -46,6 +49,8 @@ const Favorites = () => {
         if(response.ok){
            setCrags(json);
         }
+
+        setPending(false)
       }
 
       fetchCrags()
@@ -55,7 +60,6 @@ const Favorites = () => {
       crags.forEach((crag) => {
         if(favCragsList.includes(crag._id)){
           cragList.push(crag);
-
         }
       });
       setFavCrags(cragList)
@@ -64,25 +68,14 @@ const Favorites = () => {
     }, [favCragsList, user])
 
   const favClickRemove = (cragId) =>{
-      const fetchCragsList = async () => {
-          // Mientras desarrollo. Uso un proxy en package.json, necesario eliminar esa parte de la ruta
-          const response = await fetch(`https://rocaseca-server-production.up.railway.app/logged/favorite-crags/${cragId}`, {
-            method: 'DELETE',
-            headers: {
-                'Authorization': `Bearer ${user.token}`
-            }
-          });
-          const json = await response.json();
-          
-          if(response.ok){
-              setFavCragsList(json.favorites);
-
-          }
-        }
-  
-        if(user) {
-            fetchCragsList()
-        }
+    if(user) {
+      setPendingHeart(true);
+      fetchDelete(cragId, user)
+      .then((res) => {
+          setFavCragsList(res.favorites);
+          setPendingHeart(false)
+      })
+  }
   }
 
     return (
@@ -90,6 +83,7 @@ const Favorites = () => {
       <NavBar />
         <main className="favorites">
             <h2>Sectores Favoritos</h2>
+            {pending && <h3 className='profile-loading'>Loading...</h3> }
             {user && favCrags && (  
             favCrags.map((crag, index) => { 
               return (
@@ -103,7 +97,12 @@ const Favorites = () => {
                         </Link> 
                         {favCragsList && (
                             <div className="search-results__card-fav">
-                                    <i className="fav-icon fa-solid fa-heart" onClick={() => favClickRemove(crag._id)}></i>          
+                              {pendingHeart ? (
+                                <i className="fa-solid fa-spinner spin"></i>
+                              ):(
+                                <i className="fav-icon fa-solid fa-heart" onClick={() => favClickRemove(crag._id)}></i>          
+                              )}
+                                    
                             </div>
                         )}
                     </div>

@@ -10,6 +10,13 @@
     padding: 1rem;
 }
 
+.profile-loading {
+    width: 50%;
+    margin: 0 auto;
+    padding-top: 3rem;
+    text-align: center;
+}
+
 .profile-content {
     display: flex;
     flex-direction: column;
