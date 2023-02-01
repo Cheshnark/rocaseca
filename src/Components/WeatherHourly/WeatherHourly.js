@@ -20,14 +20,12 @@ const WeatherHourly = () => {
     const [clicked, setClicked] = useState(false)
 
     // Fetchs
-
     const fetchCrag = () => {
         const request = new XMLHttpRequest();
         request.open('GET', `https://rocaseca-server-production.up.railway.app/main/crags/` + cragId, false);  
         request.send(null);
         
         if (request.status === 200) {
-          console.log('fetchCrags successful');
           crag = JSON.parse(request.response);
           return true;
         }else {
@@ -41,7 +39,6 @@ const WeatherHourly = () => {
       request.send(null);
       
       if (request.status === 200) {
-        console.log('fetchFive successful');
         return true;
       }else {
         return false
@@ -55,9 +52,7 @@ const WeatherHourly = () => {
             fetchCrag();
             setHourlyWeather(crag.twelveHoursWeather);
             setLastDate(crag.hourlyUpdate);
-        } else {
-            console.log('AHhh, la paraste de pecho!');
-         };
+        }
         
          // eslint-disable-next-line
     }, [])

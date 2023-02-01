@@ -4,15 +4,15 @@ import { Link } from 'react-router-dom';
 import { useUsersContext } from '../../hooks/useUsersContext';
 import { useLogout } from '../../hooks/useLogout'; 
 
+import { fetchDelete, fetchAdd } from '../favoriteFetchs';
+import { fetchToday } from '../fetchWeather';
+
 import WeatherToday from '../WeatherToday/WeatherToday';
 
 let crags = [];
 let searchCrag = "";
-let pending = false;
 
-const SearchBar = (props) => {
-    const main = props.main;
-    
+const SearchBar = () => {
     const [bar, setBar] = useState("");
     const [destilledCrags, setDestilledCrags] = useState(null);
     const [showResults, setShowResults] = useState(false);
@@ -20,6 +20,8 @@ const SearchBar = (props) => {
     const { logout } = useLogout();
     const [favCragsList, setFavCragsList] = useState([]);
     const [favCragsListString, setFavCragListString] = useState("");
+    const [pending, setPending] = useState(false);
+    const [pendingHeart, setPendingHeart] = useState(false);
 
     const currentDate = (new Date()).getTime();
     const oneHour = 60 * 60 * 1000; 
@@ -37,18 +39,6 @@ const SearchBar = (props) => {
         return false
       }
       }
-
-    const fetchToday =  (cragId) => {
-        const request = new XMLHttpRequest();
-        request.open('GET', `https://rocaseca-server-production.up.railway.app/main/crags/current-weather/` + cragId , false);  
-        request.send(null);
-      
-        if (request.status === 200) {
-            return true;
-        }else {
-            return false
-        }
-    }
 
     // useEffects
     useEffect(() => {
@@ -83,7 +73,7 @@ const SearchBar = (props) => {
         }
         
         // eslint-disable-next-line
-      }, [favCragsListString])
+      }, [favCragsListString, pendingHeart])
 
     const filterCrags = ((e) => {
         e.preventDefault();
@@ -130,9 +120,11 @@ const SearchBar = (props) => {
         }
 
         const finalFetch = () => {
+            setPending(true)
             idArray.forEach((id) => {
                 fetchToday(id)         
             })
+            setPending(false)
             fetchCrags();
             const secondFilter = crags.filter(crag => {
                 return idArray.includes(crag._id);
@@ -141,70 +133,47 @@ const SearchBar = (props) => {
     }
 
         if(changed) {  
-            pending = true
             finalFetch() 
-            pending = false   
+            setPending(false)   
         } 
 
         setShowResults(() => {
             if (searchCrag.length === 0) {
                 setShowResults(false);
-                pending = false
             } else {
                 setShowResults(true);
-                pending = false
             }
         });
 
         // eslint-disable-next-line
     }, [searchCrag])    
 
-    const favClickAdd = (cragId) =>{
-        const fetchCragsList = async () => {
-            // Mientras desarrollo. Uso un proxy en package.json, necesario eliminar esa parte de la ruta
-            const response = await fetch(`https://rocaseca-server-production.up.railway.app/logged/favorite-crags/${cragId}`, {
-              method: 'POST',
-              headers: {
-                  'Authorization': `Bearer ${user.token}`
-              }
-            });
-            const json = await response.json();
-            
-            if(response.ok){
-                setFavCragsList(json.favorites);
+    const favClickAdd = (cragId) =>{    
+        if(user) {
+            setPendingHeart(true);
+            fetchAdd(cragId, user)
+            .then((res) => {
+                setFavCragsList(res.favorites);
                 setFavCragListString(() => {
                     return favCragsList.toString();
                 })
-            }
-          }
-    
-          if(user) {
-              fetchCragsList()
-          }
+                setPendingHeart(false)
+            })
+        }
     };
 
     const favClickRemove = (cragId) =>{
-        const fetchCragsList = async () => {
-            // Mientras desarrollo. Uso un proxy en package.json, necesario eliminar esa parte de la ruta
-            const response = await fetch(`https://rocaseca-server-production.up.railway.app/logged/favorite-crags/${cragId}`, {
-              method: 'DELETE',
-              headers: {
-                  'Authorization': `Bearer ${user.token}`
-              }
-            });
-            const json = await response.json();
-            
-            if(response.ok){
-                setFavCragsList(json.favorites);
+        if(user) {
+            setPendingHeart(true);
+            fetchDelete(cragId, user)
+            .then((res) => {
+                setFavCragsList(res.favorites);
                 setFavCragListString(() => {
                     return favCragsList.toString();
                 })
-            }
-          }
-    
-          if(user) {
-              fetchCragsList()
-          }
+                setPendingHeart(false)
+            })
+        }
     }
 
     return(
@@ -220,8 +189,8 @@ const SearchBar = (props) => {
         </form>
     
             
-        {pending && <h3>Loading...</h3>}
-        {showResults && (
+        {pending ? (<h3>Loading...</h3>):(
+        showResults && (
             <div className="search-results-container">
             <div className="search-results">
             {(destilledCrags) ? (
@@ -238,9 +207,17 @@ const SearchBar = (props) => {
                                 {favCragsList && user && (
                                     <div className="search-results__card-fav">
                                         {favCragsList.includes(crag._id) ? (
-                                            <i className="fav-icon fa-solid fa-heart" onClick={() => favClickRemove(crag._id)}></i>
+                                            pendingHeart ? (
+                                                <i className="fa-solid fa-spinner spin"></i>
+                                            ):(
+                                                <i className="fav-icon fa-solid fa-heart" onClick={() => favClickRemove(crag._id)}></i>
+                                            )
                                         ):(
-                                            <i className="fav-icon fa-regular fa-heart" onClick={() => favClickAdd(crag._id)}></i>
+                                            pendingHeart ? (
+                                                <i className="fa-solid fa-spinner spin"></i>
+                                            ):(
+                                                <i className="fav-icon fa-regular fa-heart" onClick={() => favClickAdd(crag._id)}></i>
+                                            )
                                         )}
                                     </div>
                                 )}
@@ -259,6 +236,7 @@ const SearchBar = (props) => {
             )} 
         </div>
         </div>
+        )
         )}
         </>
     )

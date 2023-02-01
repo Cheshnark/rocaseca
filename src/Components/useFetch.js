@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const useWeatherFetch = (url) => {
-    const [weather, setWeather] = useState(null);
+    const [data, setData] = useState(null);
     const [pending, setPending] = useState(true);
     const [error, setError] = useState(null);
     
@@ -36,7 +36,7 @@ const useWeatherFetch = (url) => {
         return () => abortCont.abort();
     }, [url]);
 
-    return{weather, pending, error};
+    return{data, pending, error};
 }
 
 export default useWeatherFetch;
