@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useUsersContext } from '../../hooks/useUsersContext';
 import { Link } from 'react-router-dom';
 
-import { fetchDelete } from '../../Components/favoriteFetchs';
+import { fetchFavorite } from '../../Components/favoriteFetchs';
 
 import NavBar from '../../Components/NavBar/NavBar';
 import WeatherToday from '../../Components/WeatherToday/WeatherToday';
@@ -70,7 +70,7 @@ const Favorites = () => {
   const favClickRemove = (cragId) =>{
     if(user) {
       setPendingHeart(true);
-      fetchDelete(cragId, user)
+      fetchFavorite(cragId, user, "DELETE")
       .then((res) => {
           setFavCragsList(res.favorites);
           setPendingHeart(false)

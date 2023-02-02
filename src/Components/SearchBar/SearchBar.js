@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useUsersContext } from '../../hooks/useUsersContext';
 import { useLogout } from '../../hooks/useLogout'; 
 
-import { fetchDelete, fetchAdd } from '../favoriteFetchs';
+import { fetchFavorite } from '../favoriteFetchs';
 import { fetchToday } from '../fetchWeather';
 
 import WeatherToday from '../WeatherToday/WeatherToday';
@@ -151,7 +151,7 @@ const SearchBar = () => {
     const favClickAdd = (cragId) =>{    
         if(user) {
             setPendingHeart(true);
-            fetchAdd(cragId, user)
+            fetchFavorite(cragId, user, "POST")
             .then((res) => {
                 setFavCragsList(res.favorites);
                 setFavCragListString(() => {
@@ -165,7 +165,7 @@ const SearchBar = () => {
     const favClickRemove = (cragId) =>{
         if(user) {
             setPendingHeart(true);
-            fetchDelete(cragId, user)
+            fetchFavorite(cragId, user, "DELETE")
             .then((res) => {
                 setFavCragsList(res.favorites);
                 setFavCragListString(() => {

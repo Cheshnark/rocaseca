@@ -1,6 +1,6 @@
-const fetchDelete = async (cragId, user) => {
+export const fetchFavorite = async (cragId, user, method) => {
     const response = await fetch(`https://rocaseca-server-production.up.railway.app/logged/favorite-crags/${cragId}`, {
-      method: 'DELETE',
+      method: method,
       headers: {
           'Authorization': `Bearer ${user.token}`
       }
@@ -11,19 +11,3 @@ const fetchDelete = async (cragId, user) => {
         return json
     }
   }
-
-  const fetchAdd = async (cragId, user) => {
-    const response = await fetch(`https://rocaseca-server-production.up.railway.app/logged/favorite-crags/${cragId}`, {
-      method: 'POST',
-      headers: {
-          'Authorization': `Bearer ${user.token}`
-      }
-    });
-    const json = await response.json();
-    
-    if(response.ok){
-        return json
-    }
-  }
-
-  export {fetchDelete, fetchAdd};
